@@ -110,6 +110,12 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
     public final boolean isSingleValue() {
         return _is_single_value;
     }
+    
+    
+    public void setPropertyOf(List<Long> ids) {
+    	this._property_of = ids;
+    }
+    
 
     @Override
 	public void write(JsonWriter w) throws IOException {
