@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.cxio.util.CxConstants;
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -82,21 +83,24 @@ public final class NodesElement extends AbstractAspectElement {
     }
 
     @Override
+	@JsonIgnore
     final public String getAspectName() {
         return NodesElement.ASPECT_NAME;
     }
 
+	@JsonIgnore
     final public long getId() {
         return _id;
     }
     
     public void setId(long id) { _id = id; }
 
+	@JsonIgnore
     public String getNodeName() {
         return _node_name;
     }
     
-
+	@JsonIgnore
     final public String getNodeRepresents() {
         return _node_represents;
     }

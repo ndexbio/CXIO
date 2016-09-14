@@ -1,5 +1,8 @@
 package org.cxio.aspects.datamodels;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * The supported data types (either as atomic value or as list).
  *
@@ -32,6 +35,7 @@ public enum ATTRIBUTE_DATA_TYPE {
     }
 
     @Override
+    @JsonValue
     public String toString() {
         return _name;
     }
@@ -79,6 +83,7 @@ public enum ATTRIBUTE_DATA_TYPE {
         }
     }
 
+    @JsonCreator
     public static ATTRIBUTE_DATA_TYPE fromCxLabel(final String s) {
         switch (s) {
         case "boolean":
