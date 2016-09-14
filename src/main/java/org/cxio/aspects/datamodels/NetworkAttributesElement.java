@@ -21,7 +21,7 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
 
     public NetworkAttributesElement(final Long subnetwork, final String name, final List<String> values) {
         _data_type = ATTRIBUTE_DATA_TYPE.LIST_OF_STRING;
-        _is_single_value = false;
+ //       _is_single_value = false;
         _subnetwork = subnetwork;
         _name = name;
         _values = values;
@@ -32,7 +32,7 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
             throw new IllegalArgumentException("network attribute element '" + name + "': list of values provided, but given data type is " + type.toString());
         }
         _data_type = type;
-        _is_single_value = false;
+  //      _is_single_value = false;
         _subnetwork = subnetwork;
         _name = name;
         _values = values;
@@ -43,20 +43,18 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
             throw new IllegalArgumentException("network attribute element '" + name + "': single value provided, but given data type is " + type.toString());
         }
         _data_type = type;
-        _is_single_value = true;
+  //      _is_single_value = true;
         _subnetwork = subnetwork;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(value);
+        _values = value;
     }
 
     public NetworkAttributesElement(final Long subnetwork, final String name, final String value) {
         _data_type = ATTRIBUTE_DATA_TYPE.STRING;
-        _is_single_value = true;
+ //       _is_single_value = true;
         _subnetwork = subnetwork;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(value);
+        _values = value;
 
     }
 
@@ -65,11 +63,10 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
             throw new IllegalArgumentException("constructor only applicable for singe values");
         }
         _data_type = AttributesAspectUtils.determineDataType(value);
-        _is_single_value = true;
+ //       _is_single_value = true;
         _subnetwork = subnetwork;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(String.valueOf(value));
+        _values = String.valueOf(value);
     }
 
     @Override
@@ -78,7 +75,7 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
     }
 
     @Override
-    public final List<Long> getPropertyOf() {
+    public final Long getPropertyOf() {
         throw new NoSuchMethodError("network attributes do not have a property-of data field");
     }
 
@@ -96,9 +93,9 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
         sb.append("name               : ");
         sb.append(_name);
         sb.append("\n");
-        if (_is_single_value) {
+        if (isSingleValue()) {
             sb.append("value              : ");
-            sb.append(_values.get(0));
+            sb.append(getValue());
         }
         else {
             sb.append("values            : ");

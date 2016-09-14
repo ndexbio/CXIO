@@ -75,10 +75,10 @@ public class ChecksumTest {
         final NodeAttributesElement na1 = new NodeAttributesElement(1L, "expression", v1, ATTRIBUTE_DATA_TYPE.LIST_OF_DOUBLE);
         final NodeAttributesElement na2 = new NodeAttributesElement(2L, "expression", v2, ATTRIBUTE_DATA_TYPE.LIST_OF_DOUBLE);
 
-        final ArrayList<Long> n = new ArrayList<Long>();
-        n.add(0L);
+        final Long n = new Long(0);
+       /* n.add(0L);
         n.add(1L);
-        n.add(2L);
+        n.add(2L); */
 
         final NodeAttributesElement na3 = new NodeAttributesElement(1L, n, "species", "Mus musculus", ATTRIBUTE_DATA_TYPE.STRING);
 

@@ -5,22 +5,38 @@ import java.io.IOException;
 import org.cxio.util.CxConstants;
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This is used to represent a node in a network.
  *
  * @author cmzmasek
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public final class NodesElement extends AbstractAspectElement {
 
     public final static String ID              = CxConstants.ID;
     public final static String NODE_NAME       = "n";
     public final static String NODE_REPRESENTS = "r";
     public final static String ASPECT_NAME     = "nodes";
-    private final long         _id;
-    private String             _node_name;
-    private final String       _node_represents;
+    
+	@JsonProperty(CxConstants.ID)
+    private  long         _id;
 
+	@JsonProperty(NODE_NAME)
+    private String        _node_name;
+	
+	@JsonProperty(NODE_REPRESENTS)
+    private  String       _node_represents;
+
+	
+	public NodesElement () {
+		_id = -1;
+	}
+	
     public NodesElement(final long id) {
         _id = id;
         _node_name = null;
@@ -73,13 +89,20 @@ public final class NodesElement extends AbstractAspectElement {
     final public long getId() {
         return _id;
     }
+    
+    public void setId(long id) { _id = id; }
 
-    final public String getNodeName() {
+    public String getNodeName() {
         return _node_name;
     }
+    
 
     final public String getNodeRepresents() {
         return _node_represents;
+    }
+    
+    public void setNodeRepresents(String represents) {
+    	_node_represents = represents;
     }
     
     final public void setNodeName( final String node_name ) {

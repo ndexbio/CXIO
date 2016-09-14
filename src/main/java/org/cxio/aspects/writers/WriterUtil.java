@@ -14,12 +14,12 @@ public final class WriterUtil {
             w.writeStartObject();
             w.writeNumberFieldIfNotEmpty(AbstractAttributesAspectElement.ATTR_SUBNETWORK, e.getSubnetwork());
             if (write_property_of) {
-                if (e.getPropertyOf().size() == 1) {
-                    w.writeNumberField(AbstractAttributesAspectElement.ATTR_PROPERTY_OF, e.getPropertyOf().get(0));
-                }
+              //  if (e.getPropertyOf().size() == 1) {
+                    w.writeNumberField(AbstractAttributesAspectElement.ATTR_PROPERTY_OF, e.getPropertyOf());
+            /*    }
                 else {
                     w.writeLongList(AbstractAttributesAspectElement.ATTR_PROPERTY_OF, e.getPropertyOf());
-                }
+                } */
             }
             w.writeStringField(AbstractAttributesAspectElement.ATTR_NAME, e.getName());
             if (e.isSingleValue()) {

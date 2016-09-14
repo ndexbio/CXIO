@@ -74,7 +74,7 @@ public class ExamplesOpaque {
         n.add(1L);
         n.add(2L);
 
-        final NodeAttributesElement na3 = new NodeAttributesElement(1L, n, "species", "Mus musculus", ATTRIBUTE_DATA_TYPE.STRING);
+        final NodeAttributesElement na3 = new NodeAttributesElement(1L, new Long(0), "species", "Mus musculus", ATTRIBUTE_DATA_TYPE.STRING);
 
         final List<AspectElement> node_attributes_elements = new ArrayList<AspectElement>();
         node_attributes_elements.add(na0);

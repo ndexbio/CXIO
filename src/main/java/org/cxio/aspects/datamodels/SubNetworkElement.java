@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This class is used to represent the nodes and edges which make
  * up a sub-network.
@@ -14,6 +17,9 @@ import org.cxio.util.JsonWriter;
  * @author cmzmasek
  *
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public final class SubNetworkElement extends AbstractAspectElement {
 
     public final static String    ASPECT_NAME  = "cySubNetworks"; //"subNetworks" is the old aspect name before the 1.1 fix.;
@@ -21,12 +27,21 @@ public final class SubNetworkElement extends AbstractAspectElement {
     public final static String    SUBNET_ID    = "@id";
     public final static String    SUBNET_NODES = "nodes";
 
-    final private ArrayList<Long> _edges;
-    private boolean               _edges_all;
-    final private Long            _id;
-    final private ArrayList<Long> _nodes;
+	@JsonProperty(SUBNET_EDGES)	
+     private List<Long> _edges;
+ 
+	private boolean               _edges_all;
+	
+	@JsonProperty(SUBNET_ID)	
+     private Long            _id;
+	
+	@JsonProperty(SUBNET_NODES)
+     private List<Long> _nodes;
     private boolean               _nodes_all;
 
+    
+    public SubNetworkElement() {super();}
+    
     public SubNetworkElement(final Long id) {
         _id = id;
         _nodes = new ArrayList<Long>();
@@ -53,13 +68,23 @@ public final class SubNetworkElement extends AbstractAspectElement {
     final public List<Long> getEdges() {
         return _edges;
     }
+    
+    public void setEdges(List<Long> edges) {
+    	_edges = edges; 
+    }
 
     final public Long getId() {
         return _id;
     }
+    
+    public void setId(Long id) { this._id = id; }
 
     final public List<Long> getNodes() {
         return _nodes;
+    }
+    
+    public void setNodes(List<Long> nodes) {
+    	_nodes = nodes;
     }
 
     public boolean isEdgesAll() {
@@ -124,18 +149,18 @@ public final class SubNetworkElement extends AbstractAspectElement {
 	        w.writeStartObject();
 	        w.writeNumberFieldIfNotEmpty(SubNetworkElement.SUBNET_ID, e.getId());
 
-	        if (e.isNodesAll()) {
+	       /* if (e.isNodesAll()) {
 	            w.writeStringField(SubNetworkElement.SUBNET_NODES, "all");
 	        }
-	        else {
+	        else { */
 	            w.writeLongList(SubNetworkElement.SUBNET_NODES, e.getNodes());
-	        }
-	        if (e.isEdgesAll()) {
+	     //   }
+	    /*    if (e.isEdgesAll()) {
 	            w.writeStringField(SubNetworkElement.SUBNET_EDGES, "all");
 	        }
-	        else {
+	        else { */
 	            w.writeLongList(SubNetworkElement.SUBNET_EDGES, e.getEdges());
-	        }
+	     //   }
 	        w.writeEndObject();		
 	        w.flush();
 	}

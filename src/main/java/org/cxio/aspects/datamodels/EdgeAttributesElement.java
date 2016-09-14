@@ -17,74 +17,25 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
 
     public final static String ASPECT_NAME = "edgeAttributes";
 
-    public EdgeAttributesElement(final Long subnetwork, final List<Long> property_of, final String name, final List<String> values) {
+    public EdgeAttributesElement(final Long subnetwork, final Long property_of, final String name, final List<String> values) {
         _data_type = ATTRIBUTE_DATA_TYPE.LIST_OF_STRING;
-        _is_single_value = false;
+     //   _is_single_value = false;
         _subnetwork = subnetwork;
         _property_of = property_of;
         _name = name;
         _values = values;
     }
 
-    public EdgeAttributesElement(final Long subnetwork, final List<Long> property_of, final String name, final List<String> values, final ATTRIBUTE_DATA_TYPE type) {
-        if (!AttributesAspectUtils.isListType(type)) {
-            throw new IllegalArgumentException("edge attribute element '" + name + "': list of values provided, but given data type is " + type.toString());
-        }
-        _data_type = type;
-        _is_single_value = false;
-        _subnetwork = subnetwork;
-        _property_of = property_of;
-        _name = name;
-        _values = values;
-    }
-
-    public EdgeAttributesElement(final List<Long> property_of, final String name, final List<String> values, final ATTRIBUTE_DATA_TYPE type) {
-        if (!AttributesAspectUtils.isListType(type)) {
-            throw new IllegalArgumentException("edge attribute element '" + name + "': list of values provided, but given data type is " + type.toString());
-        }
-        _data_type = type;
-        _is_single_value = false;
-        _subnetwork = null;
-        _property_of = property_of;
-        _name = name;
-        _values = values;
-    }
-
-    public EdgeAttributesElement(final Long subnetwork, final List<Long> property_of, final String name, final String value, final ATTRIBUTE_DATA_TYPE type) {
-        if (AttributesAspectUtils.isListType(type)) {
-            throw new IllegalArgumentException("edge attribute element '" + name + "': single value provided, but given data type is " + type.toString());
-        }
-        _data_type = type;
-        _is_single_value = true;
-        _subnetwork = subnetwork;
-        _property_of = property_of;
-        _name = name;
-        _values = new ArrayList<String>();
-        _values.add(value);
-    }
-
-    public EdgeAttributesElement(final List<Long> property_of, final String name, final String value, final ATTRIBUTE_DATA_TYPE type) {
-        if (AttributesAspectUtils.isListType(type)) {
-            throw new IllegalArgumentException("edge attribute element '" + name + "': single value provided, but given data type is " + type.toString());
-        }
-        _data_type = type;
-        _is_single_value = true;
-        _subnetwork = null;
-        _property_of = property_of;
-        _name = name;
-        _values = new ArrayList<String>();
-        _values.add(value);
-    }
+ 
 
     public EdgeAttributesElement(final Long subnetwork, final Long property_of, final String name, final List<String> values, final ATTRIBUTE_DATA_TYPE type) {
         if (!AttributesAspectUtils.isListType(type)) {
             throw new IllegalArgumentException("edge attribute element '" + name + "': list of values provided, but given data type is " + type.toString());
         }
         _data_type = type;
-        _is_single_value = false;
+  //      _is_single_value = false;
         _subnetwork = subnetwork;
-        _property_of = new ArrayList<Long>();
-        _property_of.add(property_of);
+        _property_of = property_of;
         _name = name;
         _values = values;
 
@@ -92,13 +43,11 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
 
     public EdgeAttributesElement(final Long subnetwork, final Long property_of, final String name, final String value) {
         _data_type = ATTRIBUTE_DATA_TYPE.STRING;
-        _is_single_value = true;
+  //      _is_single_value = true;
         _subnetwork = subnetwork;
-        _property_of = new ArrayList<Long>();
-        _property_of.add(property_of);
+        _property_of = property_of;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(value);
+        _values =value;
 
     }
 
@@ -107,13 +56,11 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
             throw new IllegalArgumentException("constructor only applicable for singe values");
         }
         _data_type = AttributesAspectUtils.determineDataType(value);
-        _is_single_value = true;
+  //      _is_single_value = true;
         _subnetwork = subnetwork;
-        _property_of = new ArrayList<Long>();
-        _property_of.add(property_of);
+        _property_of = property_of;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(String.valueOf(value));
+        _values = String.valueOf(value);
     }
 
     public EdgeAttributesElement(final Long subnetwork, final Long property_of, final String name, final String value, final ATTRIBUTE_DATA_TYPE type) {
@@ -121,13 +68,11 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
             throw new IllegalArgumentException("edge attribute element '" + name + "': single value provided, but given data type is " + type.toString());
         }
         _data_type = type;
-        _is_single_value = true;
+  //      _is_single_value = true;
         _subnetwork = subnetwork;
-        _property_of = new ArrayList<Long>();
-        _property_of.add(property_of);
+        _property_of = property_of;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(value);
+        _values = value;
     }
 
     public EdgeAttributesElement(final Long property_of, final String name, final List<String> values, final ATTRIBUTE_DATA_TYPE type) {
@@ -135,10 +80,9 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
             throw new IllegalArgumentException("edge attribute element '" + name + "': list of values provided, but given data type is " + type.toString());
         }
         _data_type = type;
-        _is_single_value = false;
+  //      _is_single_value = false;
         _subnetwork = null;
-        _property_of = new ArrayList<Long>();
-        _property_of.add(property_of);
+        _property_of = property_of;
         _name = name;
         _values = values;
     }
@@ -148,13 +92,11 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
             throw new IllegalArgumentException("edge attribute element '" + name + "': single value provided, but given data type is " + type.toString());
         }
         _data_type = type;
-        _is_single_value = true;
+  //      _is_single_value = true;
         _subnetwork = null;
-        _property_of = new ArrayList<Long>();
-        _property_of.add(property_of);
+        _property_of = property_of;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(value);
+        _values =value;
     }
 
     public EdgeAttributesElement(final Long property_of, final String name, final Object value) {
@@ -162,13 +104,11 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
             throw new IllegalArgumentException("constructor only applicable for singe values");
         }
         _data_type = AttributesAspectUtils.determineDataType(value);
-        _is_single_value = true;
+ //       _is_single_value = true;
         _subnetwork = null;
-        _property_of = new ArrayList<Long>();
-        _property_of.add(property_of);
+        _property_of = property_of;
         _name = name;
-        _values = new ArrayList<String>();
-        _values.add(String.valueOf(value));
+        _values = String.valueOf(value);
     }
 
     @Override
@@ -176,6 +116,7 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
         return ASPECT_NAME;
     }
 
+    /*
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -193,9 +134,9 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
         sb.append("name             : ");
         sb.append(_name);
         sb.append("\n");
-        if (_is_single_value) {
+        if (isSingleValue()) {
             sb.append("value            : ");
-            sb.append(_values.get(0));
+            sb.append(getValue());
         }
         else {
             sb.append("values           : ");
@@ -206,26 +147,14 @@ public final class EdgeAttributesElement extends AbstractAttributesAspectElement
         sb.append(_data_type.toString());
         sb.append("\n");
         return sb.toString();
-    }
+    } */
 
-    public final static EdgeAttributesElement createInstanceWithSingleValue(final Long subnetwork, final List<Long> property_of, final String name, final String value, final ATTRIBUTE_DATA_TYPE type) {
-
-        return new EdgeAttributesElement(subnetwork, property_of, name, DatamodelsUtil.removeParenthesis(value, type), type);
-    }
 
     public final static EdgeAttributesElement createInstanceWithSingleValue(final Long subnetwork, final Long property_of, final String name, final String value, final ATTRIBUTE_DATA_TYPE type) {
 
         return new EdgeAttributesElement(subnetwork, property_of, name, DatamodelsUtil.removeParenthesis(value, type), type);
     }
 
-    public final static EdgeAttributesElement createInstanceWithMultipleValues(final Long subnetwork,
-                                                                               final List<Long> property_of,
-                                                                               final String name,
-                                                                               final String values,
-                                                                               final ATTRIBUTE_DATA_TYPE type) throws IOException {
-
-        return new EdgeAttributesElement(subnetwork, property_of, name, DatamodelsUtil.parseStringToStringList(values, type), type);
-    }
 
     public final static EdgeAttributesElement createInstanceWithMultipleValues(final Long subnetwork, final Long property_of, final String name, final String values, final ATTRIBUTE_DATA_TYPE type) throws IOException {
 

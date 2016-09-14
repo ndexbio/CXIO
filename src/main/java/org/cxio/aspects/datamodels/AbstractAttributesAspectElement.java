@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.util.List;
 
 import org.cxio.aspects.writers.WriterUtil;
+import org.cxio.util.CxConstants;
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerator;
 
 /**
@@ -15,6 +18,9 @@ import com.fasterxml.jackson.core.JsonGenerator;
  * @author cmzmasek
  *
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public abstract class AbstractAttributesAspectElement extends AbstractAspectElement {
 
     /** The name of this attribute. */
@@ -32,12 +38,21 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
     /** The value(s) of this attribute. */
     public final static String ATTR_VALUES      = "v";
 
+	@JsonProperty(ATTR_NAME)
     String                     _name;
-    List<Long>                 _property_of;
+	
+	@JsonProperty(ATTR_PROPERTY_OF)
+    Long                 _property_of;
+	
+	@JsonProperty(ATTR_SUBNETWORK)
     Long                       _subnetwork;
+
+	@JsonProperty(ATTR_DATA_TYPE)
     ATTRIBUTE_DATA_TYPE        _data_type;
-    List<String>               _values;
-    boolean                    _is_single_value;
+
+	@JsonProperty(ATTR_VALUES )
+    Object               _values;
+  //  boolean                    _is_single_value;
 
     /**
      * This is for getting the name of the attribute.
@@ -53,7 +68,7 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
      *
      * @return a list of identifiers of the elements this attribute is a property o
      */
-    public List<Long> getPropertyOf() {
+    public Long getPropertyOf() {
         return _property_of;
     }
 
@@ -82,10 +97,11 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
      * @return the list values of the (list) attribute as list of Strings
      */
     public final List<String> getValues() {
-        if (isSingleValue()) {
+    	if ( _values == null) return null;
+        if (_values instanceof String) {
             throw new IllegalStateException("attempt to return single value as list of values");
         }
-        return _values;
+        return (List<String>)_values;
     }
 
     /**
@@ -94,10 +110,12 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
      * @return the value of the (single) attribute as String
      */
     public final String getValue() {
-        if (!isSingleValue()) {
+    	if (_values == null) return null;
+    	
+        if (! (_values instanceof String)) {
             throw new IllegalStateException("attempt to return list of values as single value");
         }
-        return _values.get(0);
+        return ( String) _values;
     }
 
     /**
@@ -107,13 +125,14 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
      *
      * @return true if single value, false if list of values
      */
-    public final boolean isSingleValue() {
-        return _is_single_value;
-    }
+   public final boolean isSingleValue() {
+	  return ATTRIBUTE_DATA_TYPE.isSingleValueType(this._data_type) ;
+      //  return (_values == null) || (_values instanceof String) ;
+    } 
     
     
-    public void setPropertyOf(List<Long> ids) {
-    	this._property_of = ids;
+    public void setPropertyOf(Long id) {
+    	this._property_of = id;
     }
     
 
@@ -122,5 +141,38 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
         WriterUtil.writeAttributesElement(w,  this, null, true);		
         w.flush();
 	}
+    
+    
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(getAspectName());
+        sb.append(": ");
+        sb.append("\n");
+        sb.append("edges: ");
+        sb.append(_property_of);
+        sb.append("\n");
+        if (_subnetwork != null) {
+            sb.append("subnetwork       : ");
+            sb.append(_subnetwork);
+            sb.append("\n");
+        }
+        sb.append("name             : ");
+        sb.append(_name);
+        sb.append("\n");
+        if (isSingleValue()) {
+            sb.append("value            : ");
+            sb.append(getValue());
+        }
+        else {
+            sb.append("values           : ");
+            sb.append(_values);
+        }
+        sb.append("\n");
+        sb.append("data type        : ");
+        sb.append(_data_type.toString());
+        sb.append("\n");
+        return sb.toString();
+    }
 
 }

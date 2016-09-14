@@ -69,12 +69,12 @@ public class Examples_CxElementReader_Iterator {
         final NodeAttributesElement na1 = new NodeAttributesElement(1L, "expression", v1, ATTRIBUTE_DATA_TYPE.LIST_OF_DOUBLE);
         final NodeAttributesElement na2 = new NodeAttributesElement(2L, "expression", v2, ATTRIBUTE_DATA_TYPE.LIST_OF_DOUBLE);
 
-        final ArrayList<Long> n = new ArrayList<Long>();
+      /*  final ArrayList<Long> n = new ArrayList<Long>();
         n.add(0L);
         n.add(1L);
-        n.add(2L);
+        n.add(2L); */
 
-        final NodeAttributesElement na3 = new NodeAttributesElement(1L, n, "species", "Mus musculus", ATTRIBUTE_DATA_TYPE.STRING);
+        final NodeAttributesElement na3 = new NodeAttributesElement(1L, new Long(0), "species", "Mus musculus", ATTRIBUTE_DATA_TYPE.STRING);
 
         final List<AspectElement> node_attributes_elements = new ArrayList<AspectElement>();
         node_attributes_elements.add(na0);

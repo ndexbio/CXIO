@@ -121,4 +121,21 @@ public enum ATTRIBUTE_DATA_TYPE {
             throw new IllegalStateException("don't know type " + s);
         }
     }
+    
+    public static boolean isSingleValueType(final ATTRIBUTE_DATA_TYPE dt) {
+    	switch (dt) {
+        case BOOLEAN:
+        case BYTE:
+        case CHAR:
+        case DOUBLE:
+        case FLOAT:
+        case INTEGER:
+        case LONG:
+        case SHORT:
+        case STRING:
+        	return true;
+        default:
+            return false;
+        }
+    }
 }
