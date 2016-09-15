@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.cxio.util.CxConstants;
 import org.cxio.util.JsonWriter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,6 +41,9 @@ public final class NumberVerification implements Serializable {
 
     public NumberVerification() {
         _data = new ArrayList<Map<String, Long>>();
+   /*     HashMap<String,Long> numMap = new HashMap<>(1);
+        numMap.put(LONG_NUMBER, CxConstants.LONG_NUMBER_TEST);
+        _data.add(numMap); */
 
     }
 
