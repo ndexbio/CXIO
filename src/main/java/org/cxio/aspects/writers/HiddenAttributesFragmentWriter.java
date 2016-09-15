@@ -22,7 +22,7 @@ public class HiddenAttributesFragmentWriter extends AbstractFragmentWriter {
     @Override
     public void writeElement(final AspectElement element, final JsonWriter w) throws IOException {
 
-        WriterUtil.writeAttributesElement(w, (HiddenAttributesElement) element, _filter, false);
+        WriterUtil.writeAttributesElement(w, (HiddenAttributesElement) element, _filter);
     }
 
     @Override

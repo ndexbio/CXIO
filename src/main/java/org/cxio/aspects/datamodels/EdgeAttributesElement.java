@@ -13,7 +13,7 @@ import java.util.List;
  * @author cmzmasek
  *
  */
-public final class EdgeAttributesElement extends AbstractAttributesAspectElement {
+public final class EdgeAttributesElement extends AbstractElementAttributesAspectElement {
 
     public final static String ASPECT_NAME = "edgeAttributes";
 

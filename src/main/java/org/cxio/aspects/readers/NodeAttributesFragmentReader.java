@@ -34,14 +34,14 @@ public final class NodeAttributesFragmentReader extends AbstractFragmentReader {
         if (ParserUtils.isArray(o, AbstractAttributesAspectElement.ATTR_VALUES)) {
             if (o.has(AbstractAttributesAspectElement.ATTR_SUBNETWORK)) {
                 return new NodeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_SUBNETWORK),
-                                                 ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+                                                 ParserUtils.getTextValueAsLong(o, NodeAttributesElement.ATTR_PROPERTY_OF),
                                                  ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                                  ParserUtils.getAsStringList(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                                  type);
 
             }
             else {
-                return new NodeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+                return new NodeAttributesElement(ParserUtils.getTextValueAsLong(o, NodeAttributesElement.ATTR_PROPERTY_OF),
                                                  ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                                  ParserUtils.getAsStringList(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                                  type);
@@ -49,13 +49,13 @@ public final class NodeAttributesFragmentReader extends AbstractFragmentReader {
         }
         if (o.has(AbstractAttributesAspectElement.ATTR_SUBNETWORK)) {
             return new NodeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_SUBNETWORK),
-                                             ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+                                             ParserUtils.getTextValueAsLong(o, NodeAttributesElement.ATTR_PROPERTY_OF),
                                              ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                              ParserUtils.getTextValue(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                              type);
         }
         else {
-            return new NodeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+            return new NodeAttributesElement(ParserUtils.getTextValueAsLong(o, NodeAttributesElement.ATTR_PROPERTY_OF),
                                              ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                              ParserUtils.getTextValue(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                              type);

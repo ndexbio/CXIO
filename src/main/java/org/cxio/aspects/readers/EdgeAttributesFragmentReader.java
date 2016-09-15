@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.cxio.aspects.datamodels.ATTRIBUTE_DATA_TYPE;
 import org.cxio.aspects.datamodels.AbstractAttributesAspectElement;
+import org.cxio.aspects.datamodels.AbstractElementAttributesAspectElement;
 import org.cxio.aspects.datamodels.AttributesAspectUtils;
 import org.cxio.aspects.datamodels.EdgeAttributesElement;
 import org.cxio.core.interfaces.AspectElement;
@@ -34,14 +35,14 @@ public final class EdgeAttributesFragmentReader extends AbstractFragmentReader {
         if (ParserUtils.isArray(o, AbstractAttributesAspectElement.ATTR_VALUES)) {
             if (o.has(AbstractAttributesAspectElement.ATTR_SUBNETWORK)) {
                 return new EdgeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_SUBNETWORK),
-                                                 ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+                                                 ParserUtils.getTextValueAsLong(o, AbstractElementAttributesAspectElement.ATTR_PROPERTY_OF),
                                                  ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                                  ParserUtils.getAsStringList(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                                  type);
 
             }
             else {
-                return new EdgeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+                return new EdgeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractElementAttributesAspectElement.ATTR_PROPERTY_OF),
                                                  ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                                  ParserUtils.getAsStringList(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                                  type);
@@ -49,13 +50,13 @@ public final class EdgeAttributesFragmentReader extends AbstractFragmentReader {
         }
         if (o.has(AbstractAttributesAspectElement.ATTR_SUBNETWORK)) {
             return new EdgeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_SUBNETWORK),
-                                             ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+                                             ParserUtils.getTextValueAsLong(o, AbstractElementAttributesAspectElement.ATTR_PROPERTY_OF),
                                              ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                              ParserUtils.getTextValue(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                              type);
         }
         else {
-            return new EdgeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractAttributesAspectElement.ATTR_PROPERTY_OF),
+            return new EdgeAttributesElement(ParserUtils.getTextValueAsLong(o, AbstractElementAttributesAspectElement.ATTR_PROPERTY_OF),
                                              ParserUtils.getTextValueRequired(o, AbstractAttributesAspectElement.ATTR_NAME),
                                              ParserUtils.getTextValue(o, AbstractAttributesAspectElement.ATTR_VALUES),
                                              type);

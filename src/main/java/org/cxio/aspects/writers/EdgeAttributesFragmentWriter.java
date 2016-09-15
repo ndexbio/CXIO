@@ -22,7 +22,7 @@ public class EdgeAttributesFragmentWriter extends AbstractFragmentWriter {
     @Override
     public void writeElement(final AspectElement element, final JsonWriter w) throws IOException {
 
-        WriterUtil.writeAttributesElement(w, (EdgeAttributesElement) element, _filter, true);
+        WriterUtil.writeAttributesElement(w, (EdgeAttributesElement) element, _filter);
     }
 
     @Override

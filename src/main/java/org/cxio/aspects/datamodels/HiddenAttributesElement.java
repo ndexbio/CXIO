@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.cxio.util.JsonWriter;
+
 /**
  * This class is used to present one hidden attribute.
  * An attribute consists of a name, value(s), data type (optional, if not set
@@ -66,10 +68,7 @@ public final class HiddenAttributesElement extends AbstractAttributesAspectEleme
         _values = String.valueOf(value);
     }
 
-    @Override
-    public Long getPropertyOf() {
-        throw new NoSuchMethodError("hidden attributes do not have a property-of data field");
-    }
+
 
     @Override
     public String getAspectName() {
@@ -113,5 +112,6 @@ public final class HiddenAttributesElement extends AbstractAttributesAspectEleme
 
         return new HiddenAttributesElement(subnetwork, name, DatamodelsUtil.parseStringToStringList(values, type), type);
     }
+
 
 }

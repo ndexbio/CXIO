@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public final class NodeAttributesElement extends AbstractAttributesAspectElement {
+public final class NodeAttributesElement extends AbstractElementAttributesAspectElement {
 
     public final static String ASPECT_NAME = "nodeAttributes";
 

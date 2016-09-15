@@ -26,9 +26,6 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
     /** The name of this attribute. */
     public final static String ATTR_NAME        = "n";
 
-    /** The node or edge this attribute is a property of. */
-    public final static String ATTR_PROPERTY_OF = "po";
-
     /** The subnetwork this attribute belongs to. */
     public final static String ATTR_SUBNETWORK  = "s";
 
@@ -41,9 +38,6 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
 	@JsonProperty(ATTR_NAME)
     String                     _name;
 	
-	@JsonProperty(ATTR_PROPERTY_OF)
-    Long                 _property_of;
-	
 	@JsonProperty(ATTR_SUBNETWORK)
     Long                       _subnetwork;
 
@@ -52,7 +46,6 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
 
 	@JsonProperty(ATTR_VALUES )
     Object               _values;
-  //  boolean                    _is_single_value;
 
     /**
      * This is for getting the name of the attribute.
@@ -63,15 +56,7 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
         return _name;
     }
 
-    /**
-     * This returns a list of identifiers of the elements this attribute is a property of.
-     *
-     * @return a list of identifiers of the elements this attribute is a property o
-     */
-    public Long getPropertyOf() {
-        return _property_of;
-    }
-
+ 
     /**
      * This returns the identifier of the subnetwork this attribute belongs to.
      *
@@ -131,16 +116,11 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
     } 
     
     
-    public void setPropertyOf(Long id) {
-    	this._property_of = id;
-    }
-    
-
     @Override
 	public void write(JsonWriter w) throws IOException {
-        WriterUtil.writeAttributesElement(w,  this, null, true);		
+        WriterUtil.writeAttributesElement(w,  this, null);		
         w.flush();
-	}
+	} 
     
     
     @Override
@@ -149,8 +129,6 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
         sb.append(getAspectName());
         sb.append(": ");
         sb.append("\n");
-        sb.append("edges: ");
-        sb.append(_property_of);
         sb.append("\n");
         if (_subnetwork != null) {
             sb.append("subnetwork       : ");

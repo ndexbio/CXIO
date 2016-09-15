@@ -74,11 +74,7 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
         return ASPECT_NAME;
     }
 
-    @Override
-    public final Long getPropertyOf() {
-        throw new NoSuchMethodError("network attributes do not have a property-of data field");
-    }
-
+  
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -117,10 +113,13 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
         return new NetworkAttributesElement(subnetwork, name, DatamodelsUtil.parseStringToStringList(values, type), type);
     }
     
+    /*
     @Override
   	public void write(JsonWriter w) throws IOException {
-          WriterUtil.writeAttributesElement(w,  this, null, false);		
+          WriterUtil.writeAttributesElement(w,  this, null);		
           w.flush();
   	}
+  	
+  	*/
 
 }
