@@ -7,6 +7,9 @@ import java.util.List;
 import org.cxio.aspects.writers.WriterUtil;
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * This class is used to present one attribute of a network.
  * An attribute consists of a name, value(s), type, and
@@ -112,6 +115,29 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
 
         return new NetworkAttributesElement(subnetwork, name, DatamodelsUtil.parseStringToStringList(values, type), type);
     }
+    
+    /**
+     *  Value is a JSON string of _values field.
+     * @param subnetwork
+     * @param name
+     * @param values
+     * @param type
+     * @return
+     * @throws IOException
+     */
+    public final static NetworkAttributesElement createInstanceWithJsonValue(final Long subnetwork, final String name, final String serializedValue, final ATTRIBUTE_DATA_TYPE type) throws IOException {
+
+    	ObjectMapper mapper = new ObjectMapper();
+    	if ( ATTRIBUTE_DATA_TYPE.isSingleValueType(type)) {
+    		String s = mapper.readValue(serializedValue, String.class);
+    		return new NetworkAttributesElement(subnetwork, name, s, type);
+    	} 
+    	
+        final TypeReference<List<String>> typeRef = new TypeReference<List<String>>() {   };
+    	List<String> sl = mapper.readValue(serializedValue, typeRef);
+        return new NetworkAttributesElement(subnetwork, name, sl, type);
+    }
+
     
     /*
     @Override
