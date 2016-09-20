@@ -92,6 +92,11 @@ public final class MetaDataCollection implements Serializable, Iterable<MetaData
         _data.add(e.getData());
         return true;
     }
+    
+    public final boolean addAt( int position, final MetaDataElement e) {
+        _data.add(position, e.getData());
+        return true;
+    }
 
     /**
      * Convenience method to create and add one meta data element.
