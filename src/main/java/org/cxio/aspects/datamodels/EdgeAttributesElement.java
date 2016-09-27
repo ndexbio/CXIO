@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * This class is used to present one attribute of a network edge.
  * An attribute consists of a name, value(s), data type (optional, if not set
@@ -17,6 +19,8 @@ public final class EdgeAttributesElement extends AbstractElementAttributesAspect
 
     public final static String ASPECT_NAME = "edgeAttributes";
 
+    public EdgeAttributesElement() {}
+    
     public EdgeAttributesElement(final Long subnetwork, final Long property_of, final String name, final List<String> values) {
         _data_type = ATTRIBUTE_DATA_TYPE.LIST_OF_STRING;
      //   _is_single_value = false;
@@ -112,6 +116,7 @@ public final class EdgeAttributesElement extends AbstractElementAttributesAspect
     }
 
     @Override
+    @JsonIgnore
     public String getAspectName() {
         return ASPECT_NAME;
     }

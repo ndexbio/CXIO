@@ -140,6 +140,13 @@ public final class JsonWriter {
         _g.writeNumberField(field_name, l);
     }
 
+    public final void writeNumberField(final String field_name, final Long l) throws IOException {
+       if( l == null ) {
+    	   _g.writeNullField(field_name);
+       } else 
+    	   _g.writeNumberField(field_name, l);
+    }
+
     public final void writeNumberField(final String field_name, final int i) throws IOException {
         _g.writeNumberField(field_name, i);
     }

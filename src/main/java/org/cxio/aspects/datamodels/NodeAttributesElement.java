@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
@@ -22,7 +23,9 @@ public final class NodeAttributesElement extends AbstractElementAttributesAspect
     public final static String ASPECT_NAME = "nodeAttributes";
 
     
-    public NodeAttributesElement() {}
+    public NodeAttributesElement() {
+    	super();
+    }
     
     public NodeAttributesElement(final Long subnetwork, final Long property_of, final String name, final List<String> values) {
         _data_type = ATTRIBUTE_DATA_TYPE.LIST_OF_STRING;
@@ -133,6 +136,7 @@ public final class NodeAttributesElement extends AbstractElementAttributesAspect
     }
 
     @Override
+	@JsonIgnore
     public String getAspectName() {
         return ASPECT_NAME;
     }

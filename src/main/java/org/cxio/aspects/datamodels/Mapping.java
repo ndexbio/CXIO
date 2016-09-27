@@ -7,9 +7,11 @@ public final class Mapping {
     public final static String TYPE       = "type";
     public final static String DEFINITION = "definition";
 
-    private final String       _type;
-    private final String       _definition;
+    private  String       _type;
+    private  String       _definition;
 
+    public Mapping () {}
+    
     public Mapping(final String type, final String definition) {
         if (CxioUtil.isEmpty(type)) {
             throw new IllegalArgumentException("mappping type must not be null or empty");
@@ -24,10 +26,14 @@ public final class Mapping {
     public final String getType() {
         return _type;
     }
+    
+    public void setType (String type) { _type = type;}
 
     public final String getDefintion() {
         return _definition;
     }
+    
+    public void setDefinition (String definition) { _definition = definition;}
 
     @Override
     public String toString() {

@@ -7,6 +7,7 @@ import java.util.List;
 import org.cxio.aspects.writers.WriterUtil;
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -21,6 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public final class NetworkAttributesElement extends AbstractAttributesAspectElement {
 
     public final static String ASPECT_NAME = "networkAttributes";
+    
+    public NetworkAttributesElement() { super();}
 
     public NetworkAttributesElement(final Long subnetwork, final String name, final List<String> values) {
         _data_type = ATTRIBUTE_DATA_TYPE.LIST_OF_STRING;
@@ -73,6 +76,7 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
     }
 
     @Override
+    @JsonIgnore
     public String getAspectName() {
         return ASPECT_NAME;
     }

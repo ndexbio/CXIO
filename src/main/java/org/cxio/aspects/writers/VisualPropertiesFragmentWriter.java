@@ -27,13 +27,8 @@ public class VisualPropertiesFragmentWriter extends AbstractFragmentWriter {
     public final void writeElement(final AspectElement element, final JsonWriter w) throws IOException {
         final CyVisualPropertiesElement c = (CyVisualPropertiesElement) element;
         w.writeStartObject();
-        w.writeStringField(CyVisualPropertiesElement.PROPERTIES_OF, c.getPropertiesOf());
-        if (c.getAppliesTo().size() == 1) {
-            w.writeNumberField(CyVisualPropertiesElement.APPLIES_TO, c.getAppliesTo().get(0));
-        }
-        else if (c.getAppliesTo().size() > 1) {
-            w.writeLongList(CyVisualPropertiesElement.APPLIES_TO, c.getAppliesTo());
-        }
+        w.writeStringField(CyVisualPropertiesElement.PROPERTIES_OF, c.getProperties_of());
+        w.writeNumberFieldIfNotEmpty(CyVisualPropertiesElement.APPLIES_TO, c.getApplies_to());
         w.writeNumberFieldIfNotEmpty(CyVisualPropertiesElement.VIEW, c.getView());
         if ((c.getProperties() != null) && !c.getProperties().isEmpty()) {
             w.writeObjectFieldStart(CyVisualPropertiesElement.PROPERTIES);

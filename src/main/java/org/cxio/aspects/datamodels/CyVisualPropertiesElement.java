@@ -10,6 +10,8 @@ import java.util.TreeMap;
 
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * This class is used to represent a visual property of a
  * network, node(s), or edge(s) in/under a network view.
@@ -27,16 +29,28 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
     public final static String               DEPENDENCIES  = "dependencies";
     public final static String               PROPERTIES_OF = "properties_of";
 
-    private final List<Long>                 _applies_to;
-    final Long                               _view;
-    private final SortedMap<String, String>  _properties;
-    private final SortedMap<String, String>  _dependencies;
-    private final SortedMap<String, Mapping> _mappings;
-    private final String                     _properties_of;
+    private Long                 _applies_to;
+    private Long                               _view;
+    private  SortedMap<String, String>  _properties;
+    private  SortedMap<String, String>  _dependencies;
+    private  SortedMap<String, Mapping> _mappings;
+    private  String                     _properties_of;
 
+    public CyVisualPropertiesElement () {
+    	super();
+    	
+    	_properties_of = null;
+    	_applies_to = null;
+    	_view = null;
+    	_properties = new TreeMap<> ();
+    	_dependencies = new TreeMap<>();
+    	_mappings = new TreeMap<> ();
+    	
+    }
+    
     public CyVisualPropertiesElement(final String properties_of) {
         _properties_of = properties_of;
-        _applies_to = new ArrayList<Long>();
+        _applies_to = null;
         _properties = new TreeMap<String, String>();
         _dependencies = new TreeMap<String, String>();
         _mappings = new TreeMap<String, Mapping>();
@@ -45,14 +59,14 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
 
     public CyVisualPropertiesElement(final String properties_of, final long view) {
         _properties_of = properties_of;
-        _applies_to = new ArrayList<Long>();
+        _applies_to = null;
         _properties = new TreeMap<String, String>();
         _dependencies = new TreeMap<String, String>();
         _mappings = new TreeMap<String, Mapping>();
         _view = view;
     }
 
-    public CyVisualPropertiesElement(final String properties_of, final List<Long> applies_to) {
+    public CyVisualPropertiesElement(final String properties_of, final Long applies_to) {
         _properties_of = properties_of;
         _applies_to = applies_to;
         _properties = new TreeMap<String, String>();
@@ -61,7 +75,7 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
         _view = null;
     }
 
-    public CyVisualPropertiesElement(final String properties_of, final List<Long> applies_to, final long view) {
+    public CyVisualPropertiesElement(final String properties_of, final Long applies_to, final long view) {
         _properties_of = properties_of;
         _applies_to = applies_to;
         _properties = new TreeMap<String, String>();
@@ -70,19 +84,22 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
         _view = view;
     }
 
-    public final void addAppliesTo(final String applies_to) {
+ /*   public final void addAppliesTo(final String applies_to) {
         _applies_to.add(Long.valueOf(applies_to));
     }
 
     public final void addAppliesTo(final long applies_to) {
         _applies_to.add(applies_to);
-    }
+    } */
 
-    public final List<Long> getAppliesTo() {
+    public final Long getApplies_to() {
         return _applies_to;
     }
+    
+    public void setApplies_to (Long appTo) { _applies_to = appTo; }
 
     @Override
+    @JsonIgnore
     public String getAspectName() {
         return ASPECT_NAME;
     }
@@ -90,22 +107,32 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
     final public Long getView() {
         return _view;
     }
+    
+    public void setView (Long v) { _view = v;}
 
     public final SortedMap<String, String> getProperties() {
         return _properties;
     }
 
+    public void setProperties (SortedMap<String,String> p) { _properties = p; }
+    
     public final SortedMap<String, String> getDependencies() {
         return _dependencies;
     }
 
+    public void setDependencies ( SortedMap<String,String> d) {_dependencies = d; }
+    
     public final SortedMap<String, Mapping> getMappings() {
         return _mappings;
     }
 
-    public final String getPropertiesOf() {
+    public void setMappings ( SortedMap<String, Mapping> m ) { _mappings = m; }
+    
+    public final String getProperties_of() {
         return _properties_of;
     }
+    
+    public void setProperties_of (String po) { _properties_of = po; }
 
     public final void putProperty(final String name, final String value) {
         _properties.put(name, value);
@@ -136,11 +163,8 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
             sb.append(_view);
             sb.append("\n");
         }
-        sb.append("applies to: ");
-        for (final Long a : _applies_to) {
-            sb.append(a);
-            sb.append(" ");
-        }
+        sb.append("applies to: " + _applies_to );
+        
         sb.append("\n");
         sb.append("properties:");
         sb.append("\n");
@@ -175,13 +199,9 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
 	public void write(JsonWriter w) throws IOException {
         final CyVisualPropertiesElement c = this;
         w.writeStartObject();
-        w.writeStringField(CyVisualPropertiesElement.PROPERTIES_OF, c.getPropertiesOf());
-        if (c.getAppliesTo().size() == 1) {
-            w.writeNumberField(CyVisualPropertiesElement.APPLIES_TO, c.getAppliesTo().get(0));
-        }
-        else if (c.getAppliesTo().size() > 1) {
-            w.writeLongList(CyVisualPropertiesElement.APPLIES_TO, c.getAppliesTo());
-        }
+        w.writeStringField(CyVisualPropertiesElement.PROPERTIES_OF, c.getProperties_of());
+        w.writeNumberFieldIfNotEmpty(CyVisualPropertiesElement.APPLIES_TO, c.getApplies_to());
+        
         w.writeNumberFieldIfNotEmpty(CyVisualPropertiesElement.VIEW, c.getView());
         if ((c.getProperties() != null) && !c.getProperties().isEmpty()) {
             w.writeObjectFieldStart(CyVisualPropertiesElement.PROPERTIES);

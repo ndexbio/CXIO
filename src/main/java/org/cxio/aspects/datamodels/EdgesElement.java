@@ -6,6 +6,9 @@ import org.cxio.util.CxConstants;
 import org.cxio.util.CxioUtil;
 import org.cxio.util.JsonWriter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This class is used to represent a edge in a network.
  *
@@ -13,6 +16,7 @@ import org.cxio.util.JsonWriter;
  * @author cmzmasek
  *
  */
+
 public final class EdgesElement extends AbstractAspectElement {
 
     public final static String ID             = CxConstants.ID;
@@ -20,16 +24,32 @@ public final class EdgesElement extends AbstractAspectElement {
     public final static String SOURCE_NODE_ID = "s";
     public final static String TARGET_NODE_ID = "t";
     public final static String INTERACTION    = "i";
-    final private long         _id;
-    final private long         _source;
-    final private long         _target;
-    final private String       _interaction;
+    
+	@JsonProperty(CxConstants.ID)
+     private long         _id;
+
+	@JsonProperty(SOURCE_NODE_ID)
+     private long         _source;
+	
+	@JsonProperty(TARGET_NODE_ID)
+     private long         _target;
+	
+	@JsonProperty(INTERACTION)
+     private String       _interaction;
 
     public EdgesElement(final long id, final long source, final long target) {
         _id = id;
         _source = source;
         _target = target;
         _interaction = null;
+    }
+    
+    public EdgesElement() { 
+    	super();
+    	_id = -1; 
+    	_source = -1;
+    	_target = -1;
+    	_interaction = null;
     }
 
     public EdgesElement(final long id, final String source, final String target) {
@@ -77,24 +97,45 @@ public final class EdgesElement extends AbstractAspectElement {
     }
 
     @Override
+	@JsonIgnore
     public String getAspectName() {
         return EdgesElement.ASPECT_NAME;
     }
 
+    @JsonIgnore
     public final long getId() {
         return _id;
     }
+    
+    public void setId(long id) {
+    	_id = id;
+    }
 
+    @JsonIgnore
     public final long getSource() {
         return _source;
     }
+    
+    public void setSource(long src) {
+    	_source = src;
+    }
 
+    @JsonIgnore
     public final long getTarget() {
         return _target;
     }
+    
+    public void setTarget(long tgt) {
+    	_target = tgt;
+    }
 
+    @JsonIgnore
     public final String getInteraction() {
         return _interaction;
+    }
+    
+    public void setInteraction(String interaction) {
+    	_interaction = interaction;
     }
 
     @Override

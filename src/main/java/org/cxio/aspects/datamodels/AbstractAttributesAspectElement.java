@@ -49,6 +49,9 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
 	@JsonProperty(ATTR_VALUES )
     Object               _values;
 
+	protected AbstractAttributesAspectElement ( ) { _data_type = ATTRIBUTE_DATA_TYPE.STRING; }
+	
+	
     /**
      * This is for getting the name of the attribute.
      *

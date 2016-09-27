@@ -39,8 +39,8 @@ public class CyVisualPropertiesFragmentWriterTest {
         c2.putProperty("background-color", "rgb(255,255,0)");
 
         final CyVisualPropertiesElement c3 = new CyVisualPropertiesElement("nodes");
-        c3.addAppliesTo("1");
-        c3.addAppliesTo("2");
+        c3.setApplies_to(1L);
+        //c3.addAppliesTo("2");
         c3.putProperty("background-color", "rgb(0,0,0)");
 
         final List<AspectElement> l1 = new ArrayList<AspectElement>();
@@ -56,7 +56,11 @@ public class CyVisualPropertiesFragmentWriterTest {
         w1.writeAspectElements(l1);
         w1.end(true, "");
 
-        assertEquals("[{\"numberVerification\":[{\"longNumber\":281474976710655}]},{\"cyVisualProperties\":[{\"properties_of\":\"nodes:default\",\"properties\":{\"background-color\":\"rgb(204,204,255)\",\"text-opacity\":\"1.0\",\"width\":\"40.0\"}},{\"properties_of\":\"nodes:selected\",\"properties\":{\"background-color\":\"rgb(255,255,0)\"}},{\"properties_of\":\"nodes\",\"applies_to\":[1,2],\"properties\":{\"background-color\":\"rgb(0,0,0)\"}}]},{\"status\":[{\"error\":\"\",\"success\":true}]}]",
+        assertEquals("[{\"numberVerification\":[{\"longNumber\":281474976710655}]},"
+        		+ "{\"cyVisualProperties\":[{\"properties_of\":\"nodes:default\",\"properties\":{\"background-color\":\"rgb(204,204,255)\",\"text-opacity\":\"1.0\",\"width\":\"40.0\"}},"
+        							     + "{\"properties_of\":\"nodes:selected\",\"properties\":{\"background-color\":\"rgb(255,255,0)\"}},"
+        							     + "{\"properties_of\":\"nodes\",\"applies_to\":1,\"properties\":{\"background-color\":\"rgb(0,0,0)\"}}]},"
+        		+ "{\"status\":[{\"error\":\"\",\"success\":true}]}]",
                      out1.toString());
 
     }
@@ -85,8 +89,8 @@ public class CyVisualPropertiesFragmentWriterTest {
         c2.putProperty("background-color", "rgb(255,255,0)");
 
         final CyVisualPropertiesElement c3 = new CyVisualPropertiesElement("nodes");
-        c3.addAppliesTo("1");
-        c3.addAppliesTo("2");
+        c3.setApplies_to(1L);
+     //   c3.addAppliesTo("2");
         c3.putProperty("background-color", "rgb(0,0,0)");
 
         final List<AspectElement> l1 = new ArrayList<AspectElement>();
@@ -102,7 +106,7 @@ public class CyVisualPropertiesFragmentWriterTest {
         w1.writeAspectElements(l1);
         w1.end(true, "");
 
-        assertEquals("[{\"numberVerification\":[{\"longNumber\":281474976710655}]},{\"cyVisualProperties\":[{\"properties_of\":\"nodes:default\",\"properties\":{\"background-color\":\"rgb(204,204,255)\",\"text-opacity\":\"1.0\",\"width\":\"40.0\"},\"mappings\":{\"NODE_COLOR\":{\"type\":\"cont\",\"definition\":\"rgb12,0-0-0\\\"asdef\\\"\"}}},{\"properties_of\":\"nodes:selected\",\"properties\":{\"background-color\":\"rgb(255,255,0)\"}},{\"properties_of\":\"nodes\",\"applies_to\":[1,2],\"properties\":{\"background-color\":\"rgb(0,0,0)\"}}]},{\"status\":[{\"error\":\"\",\"success\":true}]}]",
+        assertEquals("[{\"numberVerification\":[{\"longNumber\":281474976710655}]},{\"cyVisualProperties\":[{\"properties_of\":\"nodes:default\",\"properties\":{\"background-color\":\"rgb(204,204,255)\",\"text-opacity\":\"1.0\",\"width\":\"40.0\"},\"mappings\":{\"NODE_COLOR\":{\"type\":\"cont\",\"definition\":\"rgb12,0-0-0\\\"asdef\\\"\"}}},{\"properties_of\":\"nodes:selected\",\"properties\":{\"background-color\":\"rgb(255,255,0)\"}},{\"properties_of\":\"nodes\",\"applies_to\":1,\"properties\":{\"background-color\":\"rgb(0,0,0)\"}}]},{\"status\":[{\"error\":\"\",\"success\":true}]}]",
                      out1.toString());
 
     }
@@ -131,8 +135,8 @@ public class CyVisualPropertiesFragmentWriterTest {
         c2.putProperty("background-color", "rgb(255,255,0)");
 
         final CyVisualPropertiesElement c3 = new CyVisualPropertiesElement("nodes");
-        c3.addAppliesTo("1");
-        c3.addAppliesTo("2");
+        c3.setApplies_to(1L);
+    //    c3.addAppliesTo("2");
         c3.putProperty("background-color", "rgb(0,0,0)");
 
         final List<AspectElement> l1 = new ArrayList<AspectElement>();
@@ -150,7 +154,7 @@ public class CyVisualPropertiesFragmentWriterTest {
         w1.writeAspectElements(l1);
         w1.end(true, "");
 
-        assertEquals("[{\"numberVerification\":[{\"longNumber\":281474976710655}]},{\"cyVisualProperties\":[{\"properties_of\":\"nodes:default\",\"properties\":{\"background-color\":\"rgb(204,204,255)\",\"text-opacity\":\"1.0\",\"width\":\"40.0\"},\"dependencies\":{\"dependency1\":\"true\"},\"mappings\":{\"NODE_COLOR\":{\"type\":\"cont\",\"definition\":\"rgb12,0-0-0\\\"asdef\\\"\"}}},{\"properties_of\":\"nodes:selected\",\"properties\":{\"background-color\":\"rgb(255,255,0)\"}},{\"properties_of\":\"nodes\",\"applies_to\":[1,2],\"properties\":{\"background-color\":\"rgb(0,0,0)\"}}]},{\"status\":[{\"error\":\"\",\"success\":true}]}]",
+        assertEquals("[{\"numberVerification\":[{\"longNumber\":281474976710655}]},{\"cyVisualProperties\":[{\"properties_of\":\"nodes:default\",\"properties\":{\"background-color\":\"rgb(204,204,255)\",\"text-opacity\":\"1.0\",\"width\":\"40.0\"},\"dependencies\":{\"dependency1\":\"true\"},\"mappings\":{\"NODE_COLOR\":{\"type\":\"cont\",\"definition\":\"rgb12,0-0-0\\\"asdef\\\"\"}}},{\"properties_of\":\"nodes:selected\",\"properties\":{\"background-color\":\"rgb(255,255,0)\"}},{\"properties_of\":\"nodes\",\"applies_to\":1,\"properties\":{\"background-color\":\"rgb(0,0,0)\"}}]},{\"status\":[{\"error\":\"\",\"success\":true}]}]",
                      out1.toString());
 
     }

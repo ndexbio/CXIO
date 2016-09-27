@@ -85,10 +85,10 @@ public class Examples {
         node_attributes_elements.add(na2);
         node_attributes_elements.add(na3);
 
-        final List<Long> applies_to = new ArrayList<Long>();
-        applies_to.add(12L);
+      //  final List<Long> applies_to = new ArrayList<Long>();
+      //  applies_to.add(12L);
         final List<AspectElement> vp_elements = new ArrayList<AspectElement>();
-        vp_elements.add(new CyVisualPropertiesElement("network", applies_to, 1));
+        vp_elements.add(new CyVisualPropertiesElement("network", 12L, 1));
 
         // Writing to CX
         // -------------
