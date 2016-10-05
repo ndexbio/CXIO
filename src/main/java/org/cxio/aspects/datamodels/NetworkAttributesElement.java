@@ -133,8 +133,7 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
 
     	ObjectMapper mapper = new ObjectMapper();
     	if ( ATTRIBUTE_DATA_TYPE.isSingleValueType(type)) {
-    		String s = mapper.readValue(serializedValue, String.class);
-    		return new NetworkAttributesElement(subnetwork, name, s, type);
+    		return new NetworkAttributesElement(subnetwork, name, serializedValue, type);
     	} 
     	
         final TypeReference<List<String>> typeRef = new TypeReference<List<String>>() {   };
