@@ -410,8 +410,26 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
         }
         getNext();
     }
+    
+    
+    private void readNumberVerification () throws IOException {
+        nextToken();
+        if (_token != JsonToken.START_OBJECT) {
+        	throw new IllegalStateException("Illegal cx format: expected to start with an Number Verification object.");
+        }
+        nextToken();
+        if (_token != JsonToken.FIELD_NAME) {
+            throw new IOException("malformed cx json in '" + _jp.getCurrentName() + "'. Expecting a " + NumberVerification.NAME + " field name.");
+        }
+        _aspect_name = _jp.getCurrentName();
+        if (!_aspect_name.equals(NumberVerification.NAME)) 
+        	throw new IllegalStateException("Illegal cx format: expected to start with an Number Verification object with field name "+ NumberVerification.NAME);
 
-    private void nextToken() throws IOException {
+        nextToken();
+        performNumberVerification(_jp);
+    }
+
+    private JsonToken nextToken() throws IOException {
         if ((_token == JsonToken.START_ARRAY) || (_token == JsonToken.START_OBJECT)) {
             ++_level;
         }
@@ -419,6 +437,7 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
             --_level;
         }
         _token = _jp.nextToken();
+        return _token;
     }
 
     /**

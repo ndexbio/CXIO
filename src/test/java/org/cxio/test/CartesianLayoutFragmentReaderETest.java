@@ -4,13 +4,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.SortedMap;
 
 import org.cxio.aspects.datamodels.CartesianLayoutElement;
 import org.cxio.core.CxElementReader;
+import org.cxio.core.CxElementReader2;
 import org.cxio.core.interfaces.AspectElement;
+import org.cxio.metadata.MetaDataCollection;
 import org.cxio.util.CxioUtil;
 import org.junit.Test;
 
@@ -50,5 +58,36 @@ public class CartesianLayoutFragmentReaderETest {
         assertTrue(a1.getZ().equals("2"));
         assertTrue(a1.isZset() == true);
     }
+    
+    
+ /*   @Test
+    public void test2() throws IOException {
+        final String t0 = "[" + TestUtil.NUMBER_VERIFICATION + ",{\"cartesianLayout\":[{\"node\":0,\"x\":\"123\",\"y\":\"456\"}]},"
+                + "{\"cartesianLayout\":[{\"node\":1,\"x\":\"3\",\"y\":\"4\",\"z\":\"2\"}]}" + "]";
+
+        InputStream stream = new ByteArrayInputStream(t0.getBytes(StandardCharsets.UTF_8));
+        final CxElementReader2 p =  new CxElementReader2(stream, CxioUtil.getAllAvailableAspectFragmentReaders());
+
+        for ( AspectElement e : p) {
+        	System.out.println( e.toString());
+        }
+    } */
+    
+    
+    @Test
+    public void test3() throws IOException {
+        final ClassLoader classLoader = getClass().getClassLoader();
+        final File file = new File(classLoader.getResource("hang_test.cx").getFile());
+        FileInputStream in = new FileInputStream (file);
+        
+        CxElementReader2 p =  new CxElementReader2(in, CxioUtil.getAllAvailableAspectFragmentReaders());
+        
+        MetaDataCollection pre = p.getPreMetadata();
+        
+        for ( AspectElement e : p) {
+        	System.out.println( e.toString());
+        }
+    }
+    
 
 }

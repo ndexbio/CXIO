@@ -1,0 +1,53 @@
+[ {
+  "numberVerification" : [ {
+    "longNumber" : 281474976710655
+  } ]
+}, {
+  "metaData" : [ 
+  {
+    "consistencyGroup" : 1,
+    "elementCount" : 1,
+    "lastUpdate" : 1448383260454,
+    "name" : "edges",
+    "version" : "1.0"
+  }, 
+  {
+    "consistencyGroup" : 1,
+    "elementCount" : 2,
+    "lastUpdate" : 1448383260454,
+    "name" : "nodes",
+    "version" : "1.0"
+  }, 
+   {
+            "idCounter":0,
+            "name":"functionTerms"
+   }
+  ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394001,
+    "n" : "DAPK1"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394002,
+    "n" : "MK03"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394004,
+    "s" : 1394001,
+    "t" : 1394002,
+    "i" : "ipp"
+  } ]
+},
+[
+      {
+         "args":[
+            "MESHD:Atherosclerosis"
+         ],
+         "po":105282112,
+         "f":"bel:pathology"
+      }
+  ] 
+ ]
