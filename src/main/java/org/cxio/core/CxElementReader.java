@@ -29,10 +29,14 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 /**
  * CxElementReader is used to read aspect elements from a
  * input stream.
+ * 
+ * Use the more stable version CxElementReader2 class.
  *
  * @author cmzmasek
  *
  */
+@Deprecated 
+
 public final class CxElementReader extends AbstractCxReader implements Iterable<AspectElement> {
 
     private final static boolean                        DEBUG = false;
@@ -162,7 +166,7 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
      */
     public final static CxElementReader createInstance(final Object input, final Set<AspectFragmentReader> fragment_readers) throws IOException {
         try {
-            return new CxElementReader(input, fragment_readers, false, false);
+            return new CxElementReader(input, fragment_readers, true, false);
         }
         catch (final NoSuchAlgorithmException e) {
             throw new IOException(e.getMessage());
@@ -171,7 +175,7 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
 
     public final static CxElementReader createInstance(final Object input, final Set<AspectFragmentReader> fragment_readers, final boolean calculate_md5_checksum) throws IOException {
         try {
-            return new CxElementReader(input, fragment_readers, false, calculate_md5_checksum);
+            return new CxElementReader(input, fragment_readers, true, calculate_md5_checksum);
         }
         catch (final NoSuchAlgorithmException e) {
             throw new IOException(e.getMessage());

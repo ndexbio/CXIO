@@ -236,9 +236,8 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
                     return CxElementReader2.this.hasNext();
                 }
                 catch (final IOException e) {
-                    e.printStackTrace();
-                    return false;
-                }
+                	throw new RuntimeException("Error parsing element in CX stream: " + e.getMessage(),e);
+                } 
             }
 
             @Override
@@ -278,12 +277,12 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
     }
 
     
-    public MetaDataCollection getPreMetadata() throws IOException {
+    public MetaDataCollection getPreMetaData() throws IOException {
     	hasNext();
     	return _pre_meta_data;
     }
     
-    public MetaDataCollection getPostMetadata() {
+    public MetaDataCollection getPostMetaData() {
     	return _post_meta_data;
     }
 }

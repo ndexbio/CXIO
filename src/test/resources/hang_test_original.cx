@@ -1,0 +1,269 @@
+[ {
+  "numberVerification" : [ {
+    "longNumber" : 281474976710655
+  } ]
+}, {
+  "metaData" : [ {
+    "consistencyGroup" : 1,
+    "lastUpdate" : 1448383260454,
+    "name" : "edgeAttributes",
+    "version" : "1.0"
+  }, {
+    "consistencyGroup" : 1,
+    "elementCount" : 13,
+    "lastUpdate" : 1448383260454,
+    "name" : "edges",
+    "version" : "1.0"
+  }, {
+    "consistencyGroup" : 1,
+    "elementCount" : 1,
+    "lastUpdate" : 1448383260454,
+    "name" : "ndexStatus",
+    "version" : "1.0"
+  }, {
+    "consistencyGroup" : 1,
+    "lastUpdate" : 1448383260454,
+    "name" : "networkAttributes",
+    "version" : "1.0"
+  }, {
+    "consistencyGroup" : 1,
+    "lastUpdate" : 1448383260454,
+    "name" : "nodeAttributes",
+    "version" : "1.0"
+  }, {
+    "consistencyGroup" : 1,
+    "elementCount" : 12,
+    "lastUpdate" : 1448383260454,
+    "name" : "nodes",
+    "version" : "1.0"
+  }, {
+    "consistencyGroup" : 1,
+    "lastUpdate" : 1448383260454,
+    "name" : "provenanceHistory",
+    "version" : "1.0"
+  } ]
+}, {
+  "ndexStatus" : [ {
+    "externalId" : "87a3ff88-9232-11e5-8680-0251251672f9",
+    "creationTime" : 1448318142637,
+    "modificationTime" : 1448383260454,
+    "visibility" : "PUBLIC",
+    "published" : false,
+    "nodeCount" : 12,
+    "edgeCount" : 13,
+    "owner" : "test",
+    "ndexServerURI" : "http://dev2.ndexbio.org",
+    "readOnly" : false
+  } ]
+}, {
+  "provenanceHistory" : [ {
+    "entity" : {
+      "uri" : "http://dev2.ndexbio.org/network/87a3ff88-9232-11e5-8680-0251251672f9",
+      "creationEvent" : {
+        "inputs" : null,
+        "startedAtTime" : 1448318142637,
+        "endedAtTime" : 1448318142637,
+        "eventType" : "File Upload",
+        "properties" : [ {
+          "name" : "user",
+          "value" : "test test"
+        }, {
+          "name" : "account name",
+          "value" : "test"
+        }, {
+          "name" : "filename",
+          "value" : "vandeVijver_3161.sif"
+        } ]
+      },
+      "properties" : [ {
+        "name" : "edge count",
+        "value" : "13"
+      }, {
+        "name" : "node count",
+        "value" : "12"
+      }, {
+        "name" : "dc:title",
+        "value" : "vandeVijver_3161"
+      } ]
+    }
+  } ]
+}, {
+  "networkAttributes" : [ {
+    "n" : "name",
+    "v" : "vandeVijver_3161"
+  } ]
+}, {
+  "networkAttributes" : [ {
+    "n" : "description",
+    "v" : ""
+  } ]
+}, {
+  "networkAttributes" : [ {
+    "n" : "ndex:sourceFormat",
+    "v" : "SIF"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394001,
+    "n" : "DAPK1"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394002,
+    "n" : "MK03"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394005,
+    "n" : "SHC1"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394007,
+    "n" : "MK12"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394009,
+    "n" : "AKT1"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394011,
+    "n" : "HSF1"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394013,
+    "n" : "MK09"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394015,
+    "n" : "PTPRR"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394019,
+    "n" : "GORS2"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394021,
+    "n" : "STK3"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394023,
+    "n" : "GIT1"
+  } ]
+}, {
+  "nodes" : [ {
+    "@id" : 1394025,
+    "n" : "HMMR"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394004,
+    "s" : 1394001,
+    "t" : 1394002,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394006,
+    "s" : 1394002,
+    "t" : 1394005,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394008,
+    "s" : 1394002,
+    "t" : 1394007,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394010,
+    "s" : 1394009,
+    "t" : 1394005,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394012,
+    "s" : 1394002,
+    "t" : 1394011,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394014,
+    "s" : 1394002,
+    "t" : 1394013,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394016,
+    "s" : 1394002,
+    "t" : 1394015,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394017,
+    "s" : 1394013,
+    "t" : 1394011,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394018,
+    "s" : 1394009,
+    "t" : 1394002,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394020,
+    "s" : 1394002,
+    "t" : 1394019,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394022,
+    "s" : 1394002,
+    "t" : 1394021,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394024,
+    "s" : 1394002,
+    "t" : 1394023,
+    "i" : "ipp"
+  } ]
+}, {
+  "edges" : [ {
+    "@id" : 1394026,
+    "s" : 1394002,
+    "t" : 1394025,
+    "i" : "ipp"
+  } ]
+}, {
+  "metaData" : [ {
+    "idCounter" : 1394025,
+    "name" : "nodes"
+  }, {
+    "idCounter" : 1394026,
+    "name" : "edges"
+  } ]
+}, {
+  "status" : [ {
+    "error" : "",
+    "success" : true
+  } ]
+} ]

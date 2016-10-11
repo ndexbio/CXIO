@@ -4,13 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.SortedMap;
 
@@ -74,20 +71,84 @@ public class CartesianLayoutFragmentReaderETest {
     } */
     
     
-    @Test
-    public void test3() throws IOException {
+/*    @Test
+    public void test3() throws IOException  {
         final ClassLoader classLoader = getClass().getClassLoader();
         final File file = new File(classLoader.getResource("hang_test.cx").getFile());
         FileInputStream in = new FileInputStream (file);
         
         CxElementReader2 p =  new CxElementReader2(in, CxioUtil.getAllAvailableAspectFragmentReaders());
         
-        MetaDataCollection pre = p.getPreMetadata();
+        MetaDataCollection pre = p.getPreMetaData();
         
-        for ( AspectElement e : p) {
-        	System.out.println( e.toString());
+        try {
+        	for ( AspectElement e : p) {
+        		System.out.println( e.toString());
+        	} 
+        
+        } catch (RuntimeException e) {
+        	assertEquals(e.getMessage(), "Error parsing element in CX stream: Expecting new aspect fragment at line: 44, column: 2");
         }
+        
+    } */
+    
+    @Test
+    public void test4 () throws IOException {
+    	test_compare("hang_test_original.cx");
+    	test_compare("bind.cx");
+    	test_compare("interact.cx");
+    	test_compare("mint.cx");
+    	test_compare("CoCaNetX.cx");
+    	test_compare("small_corpus-fixed.cx");
+    	test_compare("drh_1.cx");
+
     }
     
+    
+    
+    private void test_compare(String fileName) throws IOException {
+        final ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+        FileInputStream in = new FileInputStream (file);
+ 
+        long t3 = System.currentTimeMillis();
+        CxElementReader p2 = CxElementReader.createInstance(in, CxioUtil.getAllAvailableAspectFragmentReaders());
+       
+       MetaDataCollection pre2 = p2.getPreMetaData();
+       
+       int counter2 =0;
+       for ( AspectElement e : p2) {
+       	
+  //     	System.out.println( e.toString());
+       	counter2++;
+       }
+       in.close();
+       long t4 = System.currentTimeMillis();
+       System.out.println("Runtime: " + (t4-t3) + ".\tReader1 read " + counter2 + " elements.");
+       
+         file = new File(classLoader.getResource(fileName).getFile());
+         in = new FileInputStream (file);
+       
+         long t1 = System.currentTimeMillis();
+         CxElementReader2 p =  new CxElementReader2(in, CxioUtil.getAllAvailableAspectFragmentReaders());
+         
+         MetaDataCollection pre = p.getPreMetaData();
+         
+         int counter1 = 0;
+         for ( AspectElement e : p) {
+      //   	System.out.println( e.toString());
+         	counter1++;
+         }
+         in.close();
+        
+         long t2 = System.currentTimeMillis();
+         System.out.println("Runtime: " + (t2-t1) + ".\tReader 2 read " + counter1 + " elements.");
+        
+        assertEquals(counter1, counter2);
+        assertEquals(pre.size(), pre2.size());
+
+    }
+    
+
 
 }
