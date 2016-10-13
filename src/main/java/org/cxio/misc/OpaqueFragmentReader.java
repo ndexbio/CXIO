@@ -97,7 +97,7 @@ public final class OpaqueFragmentReader extends AbstractFragmentReader {
     }
 
     @Override
-    public final AspectElement readElement(final ObjectNode o) throws IOException {
+    public final OpaqueElement readElement(final ObjectNode o) throws IOException {
         return new OpaqueElement(_name, o);
     }
 }
