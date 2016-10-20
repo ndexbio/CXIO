@@ -25,20 +25,23 @@ public final class Status implements Serializable {
     private static final String                   SUCCESS          = "success";
     private final List<SortedMap<String, Object>> _data;
 
-    public final static Status createInstanceFromJson(final InputStream is) throws IOException {
+ /*   public final static Status createInstanceFromJson(final InputStream is) throws IOException {
         final ObjectMapper m = new ObjectMapper();
         return m.readValue(is, Status.class);
-    }
+    } */
 
     public final static Status createInstanceFromJson(final JsonParser jp) throws JsonParseException, JsonMappingException, IOException {
         final ObjectMapper m = new ObjectMapper();
-        return m.readValue(jp, Status.class);
+        Status s =  m.readValue(jp, Status.class);
+        if ( s.getStatus().size() != 1)
+        	throw new IOException ("Aspect 'status' should have one element in it.");
+        return s; 
     }
 
-    public final static Status createInstanceFromJson(final String str) throws IOException {
+ /*   public final static Status createInstanceFromJson(final String str) throws IOException {
         final ObjectMapper m = new ObjectMapper();
         return m.readValue(str, Status.class);
-    }
+    } */
 
     public Status() {
         _data = new ArrayList<SortedMap<String, Object>>();
