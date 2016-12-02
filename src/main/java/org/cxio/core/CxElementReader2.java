@@ -25,8 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
- * CxElementReader is used to read aspect elements from a
- * input stream.
+ * CxElementReader2 is used to read aspect elements from an
+ * input stream. It is a modified version from CXElementReader class to avoid some bugs in it. Use this instead of CXElementReader class.
  *
  * @author Jing Chen
  *

@@ -89,7 +89,8 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
     public final List<String> getValues() {
     	if ( _values == null) return null;
         if (_values instanceof String) {
-            throw new IllegalStateException("attempt to return single value as list of values");
+            throw new IllegalStateException("attempt to return single value as list of values: \"" + 
+              _values + "\" in attribute " + getName());
         }
         return (List<String>)_values;
     }
@@ -109,7 +110,8 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
     	if (_values == null) return null;
     	
         if (! (_values instanceof String)) {
-            throw new IllegalStateException("attempt to return list of values as single value");
+            throw new IllegalStateException("attempt to return list of values as single value: \"" + 
+              _values + "\" in attribute " + getName());
         }
         return ( String) _values;
     }
