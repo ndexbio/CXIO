@@ -3,15 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.ndexbio.cxio</groupId>
-	<artifactId>cxio</artifactId>
+	<artifactId>ndex-cxio</artifactId>
 	<packaging>bundle</packaging>
 	<version>1.0.0</version>
 	<name>CX Serialization and De-serialization library</name>
 	<description>Java classes for CX serialization and de-serialization</description>
 
 	<properties>
-		<bundle.symbolicName>org.cxio.cxio</bundle.symbolicName>
-		<bundle.namespace>org.cxio</bundle.namespace>
+		<bundle.symbolicName>org.ndexbio.cxio.cxio</bundle.symbolicName>
+		<bundle.namespace>org.ndexbio.cxio</bundle.namespace>
 		
 		<junit.version>4.12</junit.version>
 		<maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
