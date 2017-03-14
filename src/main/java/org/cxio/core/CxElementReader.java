@@ -46,7 +46,6 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
     private final HashMap<String, AspectFragmentReader> _element_readers;
     private final Object                                _input;
     private JsonParser                                  _jp;
-    private int                                         _level;
     private ObjectMapper                                _m;
     private AspectElement                               _prev;
     private final boolean                               _read_anonymous_aspect_fragments;
@@ -293,7 +292,6 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
                 if (_token != JsonToken.END_ARRAY) {
                     if (_token == JsonToken.START_OBJECT) {
                         final ObjectNode o = _m.readTree(_jp);
-                        --_level;
                         if (DEBUG) {
                             System.out.println(">" + o);
                         }
@@ -399,7 +397,6 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
             }
         }
         _token = null;
-        _level = 0;
         _current = null;
         _jp = createJsonParser(_input);
         _token = _jp.nextToken();
@@ -435,10 +432,8 @@ public final class CxElementReader extends AbstractCxReader implements Iterable<
 
     private JsonToken nextToken() throws IOException {
         if ((_token == JsonToken.START_ARRAY) || (_token == JsonToken.START_OBJECT)) {
-            ++_level;
         }
         else if ((_token == JsonToken.END_ARRAY) || (_token == JsonToken.END_OBJECT)) {
-            --_level;
         }
         _token = _jp.nextToken();
         return _token;

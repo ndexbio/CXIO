@@ -41,7 +41,7 @@ public class CyVisualPropertiesFragmentReaderTest {
 
         final CyVisualPropertiesElement v0 = (CyVisualPropertiesElement) aspects.get(0);
         assertTrue(v0.getAspectName().equals(CyVisualPropertiesElement.ASPECT_NAME));
-        assertTrue(v0.getProperties_of().equals("nodes:default"));
+        assertTrue(v0.getPropertyOf().equals("nodes:default"));
 
         assertTrue(v0.getProperties().size() == 3);
 
@@ -69,7 +69,7 @@ public class CyVisualPropertiesFragmentReaderTest {
 
         final CyVisualPropertiesElement v0 = (CyVisualPropertiesElement) aspects.get(0);
         assertTrue(v0.getAspectName().equals(CyVisualPropertiesElement.ASPECT_NAME));
-        assertTrue(v0.getProperties_of().equals("nodes:default"));
+        assertTrue(v0.getPropertyOf().equals("nodes:default"));
         assertTrue(v0.getProperties().size() == 3);
         assertTrue(v0.getMappings().size() == 1);
 
@@ -105,7 +105,7 @@ public class CyVisualPropertiesFragmentReaderTest {
 
         final CyVisualPropertiesElement v0 = (CyVisualPropertiesElement) aspects.get(0);
         assertTrue(v0.getAspectName().equals(CyVisualPropertiesElement.ASPECT_NAME));
-        assertTrue(v0.getProperties_of().equals("nodes:default"));
+        assertTrue(v0.getPropertyOf().equals("nodes:default"));
         assertTrue(v0.getProperties().size() == 3);
         assertTrue(v0.getMappings().size() == 1);
 
