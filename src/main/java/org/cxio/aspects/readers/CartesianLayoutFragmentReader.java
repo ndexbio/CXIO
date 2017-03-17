@@ -27,7 +27,7 @@ public final class CartesianLayoutFragmentReader extends AbstractFragmentReader 
         if (o.has(CartesianLayoutElement.Z)) {
             if (o.has(CartesianLayoutElement.VIEW)) {
                 return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
-                                                  ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.VIEW),
+                                                  ParserUtils.getTextValueAsLong(o, CartesianLayoutElement.VIEW),
                                                   ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
                                                   ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y),
                                                   ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Z));
@@ -42,7 +42,7 @@ public final class CartesianLayoutFragmentReader extends AbstractFragmentReader 
         else {
             if (o.has(CartesianLayoutElement.VIEW)) {
                 return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
-                                                  ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.VIEW),
+                                                  ParserUtils.getTextValueAsLong(o, CartesianLayoutElement.VIEW),
                                                   ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
                                                   ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y));
 

@@ -43,9 +43,10 @@ public class ExamplesUTF8 {
         nodes_elements.add(new NodesElement(3));
 
         final List<AspectElement> cartesian_elements = new ArrayList<AspectElement>();
-        cartesian_elements.add(new CartesianLayoutElement(1, 12, 21, 1));
-        cartesian_elements.add(new CartesianLayoutElement(2, 42, 23, 2));
-        cartesian_elements.add(new CartesianLayoutElement(3, 34, 23, 3));
+        cartesian_elements.add(new CartesianLayoutElement(0l, "12", "21", "1"));
+        cartesian_elements.add(new CartesianLayoutElement(1l, "42", "23", "2"));
+        cartesian_elements.add(new CartesianLayoutElement(2l, "34", "23", "3"));
+
 
         final EdgeAttributesElement ea0 = new EdgeAttributesElement(1L, "한글", "☃", ATTRIBUTE_DATA_TYPE.STRING);
         final EdgeAttributesElement ea1 = new EdgeAttributesElement(1L, "weight", "☎", ATTRIBUTE_DATA_TYPE.INTEGER);

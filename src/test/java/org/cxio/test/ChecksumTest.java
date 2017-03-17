@@ -46,9 +46,9 @@ public class ChecksumTest {
         nodes_elements.add(new NodesElement(2));
 
         final List<AspectElement> cartesian_elements = new ArrayList<AspectElement>();
-        cartesian_elements.add(new CartesianLayoutElement(0, 12, 21.0, 1.0));
-        cartesian_elements.add(new CartesianLayoutElement(1, 42, 23.0, 2.0));
-        cartesian_elements.add(new CartesianLayoutElement(2, 34, 23.0, 3.0));
+        cartesian_elements.add(new CartesianLayoutElement(0L, "12", "21.0", "1.0"));
+        cartesian_elements.add(new CartesianLayoutElement(1L, "42", "23.0", "2.0"));
+        cartesian_elements.add(new CartesianLayoutElement(2L, "34", "23.0", "3.0"));
 
         final EdgeAttributesElement ea0 = new EdgeAttributesElement(0L, "name", "A", ATTRIBUTE_DATA_TYPE.STRING);
         final EdgeAttributesElement ea1 = new EdgeAttributesElement(0L, "weight", "2", ATTRIBUTE_DATA_TYPE.INTEGER);

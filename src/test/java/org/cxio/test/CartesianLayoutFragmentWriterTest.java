@@ -31,8 +31,8 @@ public class CartesianLayoutFragmentWriterTest {
 
         assertEquals("[{\"numberVerification\":[{\"longNumber\":281474976710655}]},{\"status\":[{\"error\":\"\",\"success\":true}]}]", out0.toString());
 
-        final CartesianLayoutElement c0 = new CartesianLayoutElement(0, 0, 0);
-        final CartesianLayoutElement c1 = new CartesianLayoutElement(1, 1, "1", "2");
+        final CartesianLayoutElement c0 = new CartesianLayoutElement(0l,null, "0", "0");
+        final CartesianLayoutElement c1 = new CartesianLayoutElement(1, 1L, "1", "2");
 
         final List<AspectElement> l1 = new ArrayList<AspectElement>();
         l1.add(c0);

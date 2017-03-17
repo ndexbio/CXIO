@@ -42,9 +42,9 @@ public class Examples_CxElementReader_MetaData {
         nodes_elements.add(new NodesElement("2"));
 
         final List<AspectElement> cartesian_elements = new ArrayList<AspectElement>();
-        cartesian_elements.add(new CartesianLayoutElement(0, 12, 21, 1));
-        cartesian_elements.add(new CartesianLayoutElement(1, 42, 23, 2));
-        cartesian_elements.add(new CartesianLayoutElement(2, 34, 23, 3));
+        cartesian_elements.add(new CartesianLayoutElement(0l, "12", "21", "1"));
+        cartesian_elements.add(new CartesianLayoutElement(1l, "42", "23", "2"));
+        cartesian_elements.add(new CartesianLayoutElement(2l, "34", "23", "3"));
 
         final EdgeAttributesElement ea0 = new EdgeAttributesElement(0L, "name", "A", ATTRIBUTE_DATA_TYPE.STRING);
         final EdgeAttributesElement ea1 = new EdgeAttributesElement(0L, "weight", "2", ATTRIBUTE_DATA_TYPE.INTEGER);
