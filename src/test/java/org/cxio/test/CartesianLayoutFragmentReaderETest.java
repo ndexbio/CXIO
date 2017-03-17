@@ -130,7 +130,7 @@ public class CartesianLayoutFragmentReaderETest {
          in = new FileInputStream (file);
        
          long t1 = System.currentTimeMillis();
-         CxElementReader2 p =  new CxElementReader2(in, CxioUtil.getAllAvailableAspectFragmentReaders());
+         CxElementReader2 p =  new CxElementReader2(in, CxioUtil.getAllAvailableAspectFragmentReaders(), false);
          
          MetaDataCollection pre = p.getPreMetaData();
          

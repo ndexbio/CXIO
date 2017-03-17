@@ -8,6 +8,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import org.cxio.aspects.datamodels.CyViewsElement;
+import org.cxio.aspects.datamodels.CyVisualPropertiesElement;
+import org.cxio.aspects.datamodels.HiddenAttributesElement;
+import org.cxio.aspects.datamodels.NetworkRelationsElement;
+import org.cxio.aspects.datamodels.SubNetworkElement;
 import org.cxio.core.interfaces.AspectElement;
 import org.cxio.core.interfaces.AspectFragmentReader;
 import org.cxio.metadata.MetaDataCollection;
@@ -66,12 +71,32 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
      * @return a CxElementReader
      * @throws IOException
      */
-    public CxElementReader2 (InputStream input, Set<AspectFragmentReader> aspect_readers) throws IOException {
+    public CxElementReader2 (InputStream input, Set<AspectFragmentReader> aspect_readers, boolean compatibleToOldCytoscapeAspect) throws IOException {
           
           _element_readers = new HashMap<String, AspectFragmentReader>();
           if (aspect_readers != null) {
               for (final AspectFragmentReader aspect_reader : aspect_readers) {
             	  _element_readers.put(aspect_reader.getAspectName(), aspect_reader);
+            	  
+            	  // special handling for back compatibility of cytoscape aspects: 
+            	  if(compatibleToOldCytoscapeAspect) {
+            		  switch (aspect_reader.getAspectName()) {
+            		  case CyVisualPropertiesElement.ASPECT_NAME:
+            			  _element_readers.put("visualProperties", aspect_reader);
+            			  break;
+            		  case SubNetworkElement.ASPECT_NAME:
+            			  _element_readers.put("subNetwork", aspect_reader);
+            			  break;
+            		  case NetworkRelationsElement.ASPECT_NAME:
+            			  _element_readers.put("networkRelations", aspect_reader);
+            			  break;
+            		  case HiddenAttributesElement.ASPECT_NAME:
+            			  _element_readers.put("hiddenAttributes", aspect_reader);
+            			  break;
+            		  default:
+                		 break;
+            	  }
+            	  }
               }
           } 
           
