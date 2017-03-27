@@ -85,7 +85,7 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
             			  _element_readers.put("visualProperties", aspect_reader);
             			  break;
             		  case SubNetworkElement.ASPECT_NAME:
-            			  _element_readers.put("subNetwork", aspect_reader);
+            			  _element_readers.put("subNetworks", aspect_reader);
             			  break;
             		  case NetworkRelationsElement.ASPECT_NAME:
             			  _element_readers.put("networkRelations", aspect_reader);

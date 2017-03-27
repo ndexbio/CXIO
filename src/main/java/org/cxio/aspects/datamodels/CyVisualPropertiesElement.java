@@ -126,11 +126,11 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
 
     public void setMappings ( SortedMap<String, Mapping> m ) { _mappings = m; }
     
-    public final String getPropertyOf() {
+    public final String getProperties_of() {
         return _properties_of;
     }
     
-    public void setPropertyOf (String po) { _properties_of = po; }
+    public void setProperties_of (String po) { _properties_of = po; }
 
     public final void putProperty(final String name, final String value) {
         _properties.put(name, value);
@@ -197,7 +197,7 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
 	public void write(JsonWriter w) throws IOException {
         final CyVisualPropertiesElement c = this;
         w.writeStartObject();
-        w.writeStringField(CyVisualPropertiesElement.PROPERTIES_OF, c.getPropertyOf());
+        w.writeStringField(CyVisualPropertiesElement.PROPERTIES_OF, c.getProperties_of());
         w.writeNumberFieldIfNotEmpty(CyVisualPropertiesElement.APPLIES_TO, c.getApplies_to());
         
         w.writeNumberFieldIfNotEmpty(CyVisualPropertiesElement.VIEW, c.getView());

@@ -40,7 +40,7 @@ public class CyVisualPropertiesFragmentReaderETest {
 
         final CyVisualPropertiesElement v0 = (CyVisualPropertiesElement) aspects.get(0);
         assertTrue(v0.getAspectName().equals(CyVisualPropertiesElement.ASPECT_NAME));
-        assertTrue(v0.getPropertyOf().equals("nodes:default"));
+        assertTrue(v0.getProperties_of().equals("nodes:default"));
 
         assertTrue(v0.getProperties().size() == 3);
 
