@@ -46,27 +46,6 @@ public final class CartesianLayoutElement extends AbstractAspectElement {
   //      _view_set = true;
     }
 
-    /*
-    public CartesianLayoutElement(final long node, final double x, final double y) {
-        _node = node;
-        _view = null;
-        _x = String.valueOf(x);
-        _y = String.valueOf(y);
-        _z = String.valueOf(0);
-        _z_set = false;
-    //    _view_set = false;
-    } 
-
-    public CartesianLayoutElement(final long node, final Long view, final double x, final double y) {
-        _node = node;
-        _view = view;
-        _x = String.valueOf(x);
-        _y = String.valueOf(y);
-        _z = String.valueOf(0);
-        _z_set = false;
- //       _view_set = true;
-    } */
-
     public CartesianLayoutElement(final long node, final Long view, final double x, final double y, final double z) {
         _node = node;
         _view = view;
@@ -77,15 +56,7 @@ public final class CartesianLayoutElement extends AbstractAspectElement {
   //      _view_set = true;
     }
 
-  /*  public CartesianLayoutElement(final long node, final double x, final double y, final double z) {
-        _node = node;
-        _view = null;
-        _x = String.valueOf(x);
-        _y = String.valueOf(y);
-        _z = String.valueOf(z);
-        _z_set = true;
-  //      _view_set = false;
-    } */
+
 
     public CartesianLayoutElement(final Long node, final String x, final String y) {
         _node = node;
@@ -97,7 +68,7 @@ public final class CartesianLayoutElement extends AbstractAspectElement {
  //       _view_set = false;
     }
 
-    public CartesianLayoutElement(final Long node, final String x, final String y, final String z) {
+ /*   public CartesianLayoutElement(final Long node, final String x, final String y, final String z) {
         _node = node;
         _view = null;
         _x = x;
@@ -105,7 +76,7 @@ public final class CartesianLayoutElement extends AbstractAspectElement {
         _z = z;
         _z_set = true;
    //     _view_set = false;
-    }
+    } */
 
     @Override
     public String getAspectName() {
@@ -179,4 +150,35 @@ public final class CartesianLayoutElement extends AbstractAspectElement {
         w.flush();
 	}
 
+	
+    /*
+    public CartesianLayoutElement(final long node, final double x, final double y) {
+        _node = node;
+        _view = null;
+        _x = String.valueOf(x);
+        _y = String.valueOf(y);
+        _z = String.valueOf(0);
+        _z_set = false;
+    //    _view_set = false;
+    } 
+
+    public CartesianLayoutElement(final long node, final Long view, final double x, final double y) {
+        _node = node;
+        _view = view;
+        _x = String.valueOf(x);
+        _y = String.valueOf(y);
+        _z = String.valueOf(0);
+        _z_set = false;
+ //       _view_set = true;
+    } */
+
+	  /*  public CartesianLayoutElement(final long node, final double x, final double y, final double z) {
+    _node = node;
+    _view = null;
+    _x = String.valueOf(x);
+    _y = String.valueOf(y);
+    _z = String.valueOf(z);
+    _z_set = true;
+//      _view_set = false;
+} */
 }

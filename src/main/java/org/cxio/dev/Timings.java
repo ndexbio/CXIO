@@ -335,7 +335,7 @@ public class Timings {
 
         w.addAspectFragmentWriter(CartesianLayoutFragmentWriter.createInstance());
         for (long i = 0; i < _elements; ++i) {
-            elements.add(new CartesianLayoutElement(i, "1", "2", "0"));
+            elements.add(new CartesianLayoutElement(i,null, "1", "2", "0"));
         }
 
         w.start();
