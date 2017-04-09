@@ -199,7 +199,7 @@ public final class MetaDataCollection implements Serializable, Iterable<MetaData
 
     /**
      * Convenience method to get the id counter of the meta data element with
-     * a give name.
+     * a given aspect name.
      *
      * @param name
      * @return the id counter

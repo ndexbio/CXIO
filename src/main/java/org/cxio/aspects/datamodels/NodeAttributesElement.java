@@ -36,18 +36,6 @@ public final class NodeAttributesElement extends AbstractElementAttributesAspect
         _values = values;
     }
 
-    public NodeAttributesElement(final long subnetwork, final Long property_of, final String name, final List<String> values, final ATTRIBUTE_DATA_TYPE type) {
-        if (!AttributesAspectUtils.isListType(type)) {
-            throw new IllegalArgumentException("node attribute element '" + name + "': list of values provided, but given data type is " + type.toString());
-        }
-        _data_type = type;
- //       _is_single_value = false;
-        _subnetwork = subnetwork;
-        _property_of = property_of;
-        _name = name;
-        _values = values;
-    }
-
 
     public NodeAttributesElement(final Long subnetwork, final Long property_of, final String name, final List<String> values, final ATTRIBUTE_DATA_TYPE type) {
         if (!AttributesAspectUtils.isListType(type)) {
