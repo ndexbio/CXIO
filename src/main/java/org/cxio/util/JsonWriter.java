@@ -95,7 +95,8 @@ public final class JsonWriter {
     }
 
     public final void writeJsonObject(final JsonNode data_node) throws IOException {
-        data_node.serialize(_g, null);
+     //   data_node.serialize(_g, null);
+    	_m.writeTree(_g, data_node);
     }
 
     public final void writeList(final String label, final Collection<String> list) throws IOException {
