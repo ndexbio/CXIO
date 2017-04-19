@@ -37,8 +37,8 @@ public final class CyVisualPropertiesFragmentReader extends AbstractFragmentRead
         }
         else if (o.has(CyVisualPropertiesElement.APPLIES_TO)) {
             vpe = new CyVisualPropertiesElement(ParserUtils.getTextValueRequired(o, CyVisualPropertiesElement.PROPERTIES_OF), 
-            			ParserUtils.getTextValueAsLong(o, CyVisualPropertiesElement.APPLIES_TO),
-            			ParserUtils.getTextValueAsLong(o, CyVisualPropertiesElement.APPLIES_TO));
+            			ParserUtils.getTextValueAsLong(o, CyVisualPropertiesElement.APPLIES_TO),null
+            			/*ParserUtils.getTextValueAsLong(o, CyVisualPropertiesElement.APPLIES_TO)*/);
         }
         else {
             vpe = new CyVisualPropertiesElement(ParserUtils.getTextValueRequired(o, CyVisualPropertiesElement.PROPERTIES_OF));
