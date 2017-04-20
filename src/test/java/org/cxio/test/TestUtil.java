@@ -1,8 +1,11 @@
 package org.cxio.test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.SortedMap;
 
@@ -13,7 +16,7 @@ import org.cxio.aspects.datamodels.EdgesElement;
 import org.cxio.aspects.datamodels.NetworkAttributesElement;
 import org.cxio.aspects.datamodels.NodeAttributesElement;
 import org.cxio.aspects.datamodels.NodesElement;
-import org.cxio.core.CxElementReader;
+import org.cxio.core.CxElementReader2;
 import org.cxio.core.CxReader;
 import org.cxio.core.CxWriter;
 import org.cxio.core.interfaces.AspectElement;
@@ -51,8 +54,9 @@ final class TestUtil {
         return out.toString();
     }
 
-    final static String cyCxElementRoundTrip(final String input_cx, final boolean compare_counts) throws IOException {
-        final CxElementReader p = CxElementReader.createInstance(input_cx, true, CxioUtil.getAllAvailableAspectFragmentReaders());
+   /* final static String cyCxElementRoundTrip(final String input_cx, final boolean compare_counts) throws IOException {
+    	InputStream is = new ByteArrayInputStream(Charset.forName("UTF-8").encode(input_cx()).array());
+       final CxElementReader2 p = new CxElementReader2(is, CxioUtil.getAllAvailableAspectFragmentReaders(), true);
         final SortedMap<String, List<AspectElement>> res = CxElementReader.parseAsMap(p);
         final AspectElementCounts cr = p.getAspectElementCounts();
 
@@ -78,8 +82,8 @@ final class TestUtil {
 
         }
 
-        return out.toString();
-    }
+        return out.toString(); 
+    } */
 
     final static boolean isAreByteArraysEqual(final byte[] a0, final byte[] a1) {
         if (a0.length != a1.length) {

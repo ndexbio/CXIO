@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.SortedMap;
 
-import org.cxio.core.CxElementReader;
 import org.cxio.core.CxWriter;
 import org.cxio.core.interfaces.AspectElement;
 import org.cxio.misc.OpaqueElement;
@@ -109,7 +108,7 @@ public class Examples2_CxElementReader {
 
         // Reading from CX
         // ---------------
-
+/*
         final CxElementReader r = CxElementReader.createInstanceWithAllAvailableReaders(cx_json_str, true);
 
         final List<AspectElement> res = new ArrayList<AspectElement>();
@@ -137,7 +136,7 @@ public class Examples2_CxElementReader {
             for (final AspectElement element : entry.getValue()) {
                 System.out.println(element.toString());
             }
-        }
+        } */
 
     }
 

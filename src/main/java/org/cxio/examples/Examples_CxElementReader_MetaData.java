@@ -12,7 +12,6 @@ import org.cxio.aspects.datamodels.EdgeAttributesElement;
 import org.cxio.aspects.datamodels.EdgesElement;
 import org.cxio.aspects.datamodels.NodeAttributesElement;
 import org.cxio.aspects.datamodels.NodesElement;
-import org.cxio.core.CxElementReader;
 import org.cxio.core.CxWriter;
 import org.cxio.core.interfaces.AspectElement;
 import org.cxio.metadata.MetaDataCollection;
@@ -178,7 +177,7 @@ public class Examples_CxElementReader_MetaData {
         // Reading from CX using CxElementReader
         // -------------------------------------
 
-        final CxElementReader p = CxElementReader.createInstanceWithAllAvailableReaders(cx_json_str, true, true);
+  /*      final CxElementReader p = CxElementReader.createInstanceWithAllAvailableReaders(cx_json_str, true, true);
 
         System.out.println();
         System.out.println("Pre meta datas:");
@@ -201,7 +200,7 @@ public class Examples_CxElementReader_MetaData {
         System.out.print(p.getPostMetaData());
 
         System.out.println();
-        CxioUtil.validate(w.getMd5Checksum(), p.getMd5Checksum(), cw, cr);
+        CxioUtil.validate(w.getMd5Checksum(), p.getMd5Checksum(), cw, cr); */
 
     }
 

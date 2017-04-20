@@ -18,7 +18,6 @@ import org.cxio.aspects.datamodels.NodesElement;
 import org.cxio.aspects.writers.CartesianLayoutFragmentWriter;
 import org.cxio.aspects.writers.EdgesFragmentWriter;
 import org.cxio.aspects.writers.NodesFragmentWriter;
-import org.cxio.core.CxElementReader;
 import org.cxio.core.CxReader;
 import org.cxio.core.CxWriter;
 import org.cxio.core.interfaces.AspectElement;
@@ -335,7 +334,7 @@ public class Cookbook {
 
         w.end(true, "");
 
-        final byte[] checksum0 = w.getMd5Checksum();
+   /*     final byte[] checksum0 = w.getMd5Checksum();
 
         final CxElementReader r = CxElementReader.createInstanceWithAllAvailableReaders(out.toString(), true, true);
 
@@ -353,7 +352,7 @@ public class Cookbook {
         for (final byte b : checksum1) {
             System.out.print(b + " ");
         }
-        System.out.println();
+        System.out.println();*/
 
     }
 

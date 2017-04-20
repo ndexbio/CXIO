@@ -12,7 +12,6 @@ import org.cxio.aspects.datamodels.EdgeAttributesElement;
 import org.cxio.aspects.datamodels.EdgesElement;
 import org.cxio.aspects.datamodels.NodeAttributesElement;
 import org.cxio.aspects.datamodels.NodesElement;
-import org.cxio.core.CxElementReader;
 import org.cxio.core.CxWriter;
 import org.cxio.core.interfaces.AspectElement;
 import org.cxio.misc.AspectElementCounts;
@@ -137,7 +136,7 @@ public class Examples_CxElementReader {
 
         // Reading from CX using CxElementReader
         // -------------------------------------
-
+/*
         final CxElementReader p = CxElementReader.createInstanceWithAllAvailableReaders(cx_json_str, true, true);
 
         while (p.hasNext()) {
@@ -147,7 +146,7 @@ public class Examples_CxElementReader {
 
         final AspectElementCounts cr = p.getAspectElementCounts();
         System.out.println(cr);
-        CxioUtil.validate(w.getMd5Checksum(), p.getMd5Checksum(), cw, cr);
+        CxioUtil.validate(w.getMd5Checksum(), p.getMd5Checksum(), cw, cr); */
 
     }
 
