@@ -118,7 +118,11 @@ public final class ParserUtils {
     }
 
     public final static boolean isArray(final ObjectNode o, final String label) throws IOException {
-        return o.get(label).isArray();
+    	JsonNode o2 = o.get(label);
+    	if ( o2 != null)
+    			return o2.isArray();
+    	
+    	return false;
     }
 
     /**
