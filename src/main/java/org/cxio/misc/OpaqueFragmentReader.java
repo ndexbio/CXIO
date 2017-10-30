@@ -70,7 +70,7 @@ public final class OpaqueFragmentReader extends AbstractFragmentReader {
         if (t == JsonToken.START_ARRAY) {
             _is_list = true;
         }
-        final List<AspectElement> elements = new ArrayList<AspectElement>();
+        final List<AspectElement> elements = new ArrayList<>();
         if (_is_list) {
             while (t != JsonToken.END_ARRAY) {
                 if (t == JsonToken.START_OBJECT) {

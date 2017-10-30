@@ -1,7 +1,6 @@
 package org.cxio.misc;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,19 +43,19 @@ public final class Status implements Serializable {
     } */
 
     public Status() {
-        _data = new ArrayList<SortedMap<String, Object>>();
+        _data = new ArrayList<>();
 
     }
 
     public Status(final boolean success) {
-        _data = new ArrayList<SortedMap<String, Object>>();
+        _data = new ArrayList<>();
         _data.add(new TreeMap<String, Object>());
         _data.get(0).put(ERROR, "");
-        _data.get(0).put(SUCCESS, success);
+        _data.get(0).put(SUCCESS, Boolean.valueOf(success));
     }
 
     public Status(final boolean success, final String error) {
-        _data = new ArrayList<SortedMap<String, Object>>();
+        _data = new ArrayList<>();
         _data.add(new TreeMap<String, Object>());
         _data.get(0).put(ERROR, error == null ? "" : error);
         _data.get(0).put(SUCCESS, success);

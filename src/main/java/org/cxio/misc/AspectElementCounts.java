@@ -27,7 +27,7 @@ public final class AspectElementCounts {
 
     public final int getAspectElementCount(final String aspect_name) {
         if (_count_data.containsKey(aspect_name)) {
-            return _count_data.get(aspect_name);
+            return _count_data.get(aspect_name).intValue();
         }
         return 0;
     }
@@ -53,7 +53,7 @@ public final class AspectElementCounts {
     }
 
     public final void setAspectElementCount(final String aspect_name, final int count) {
-        _count_data.put(aspect_name, count);
+        _count_data.put(aspect_name, Integer.valueOf(count));
     }
 
     @Override
@@ -93,7 +93,7 @@ public final class AspectElementCounts {
             _count_data.put(aspect_name, _count_data.get(aspect_name) + 1);
         }
         else {
-            _count_data.put(aspect_name, 1);
+            _count_data.put(aspect_name, Integer.valueOf(1));
         }
     }
 
@@ -102,12 +102,12 @@ public final class AspectElementCounts {
             _count_data.put(aspect_name, _count_data.get(aspect_name) + count);
         }
         else {
-            _count_data.put(aspect_name, count);
+            _count_data.put(aspect_name, Integer.valueOf(count));
         }
     }
 
     private AspectElementCounts() {
-        _count_data = new TreeMap<String, Integer>();
+        _count_data = new TreeMap<>();
     }
 
 }

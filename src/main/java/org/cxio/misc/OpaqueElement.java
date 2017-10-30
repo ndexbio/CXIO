@@ -21,7 +21,11 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  */
 public final class OpaqueElement extends AbstractAspectElement {
 
-    private final JsonNode            _data;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5157720596377220141L;
+	private final JsonNode            _data;
     private final String              _name;
     private final static ObjectMapper mapper = new ObjectMapper();
 
@@ -63,9 +67,7 @@ public final class OpaqueElement extends AbstractAspectElement {
         if (_data != null) {
             return mapper.writeValueAsString(_data);
         }
-        else {
-            return "";
-        }
+		return "";
     }
 
     @Override

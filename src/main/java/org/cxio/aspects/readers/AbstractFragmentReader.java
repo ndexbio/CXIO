@@ -36,7 +36,7 @@ public abstract class AbstractFragmentReader implements AspectFragmentReader {
         if (t != JsonToken.START_ARRAY) {
             throw new IOException("malformed cx json in '" + getAspectName() + "'");
         }
-        final List<AspectElement> elements = new ArrayList<AspectElement>();
+        final List<AspectElement> elements = new ArrayList<>();
         while (t != JsonToken.END_ARRAY) {
             if (t == JsonToken.START_OBJECT) {
                 final ObjectNode o = _m.readTree(jp);
