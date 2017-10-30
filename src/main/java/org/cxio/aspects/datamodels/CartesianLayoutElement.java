@@ -12,7 +12,11 @@ import org.cxio.util.JsonWriter;
  */
 public final class CartesianLayoutElement extends AbstractAspectElement {
 
-    public final static String ASPECT_NAME = "cartesianLayout";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public final static String ASPECT_NAME = "cartesianLayout";
     public final static String NODE        = "node";
     public final static String VIEW        = "view";
     public final static String X           = "x";
@@ -58,7 +62,7 @@ public final class CartesianLayoutElement extends AbstractAspectElement {
 
 
 
-    public CartesianLayoutElement(final Long node, final String x, final String y) {
+    public CartesianLayoutElement(final long node, final String x, final String y) {
         _node = node;
         _view = null;
         _x = x;
@@ -141,10 +145,10 @@ public final class CartesianLayoutElement extends AbstractAspectElement {
         if (this._view != null) {
             w.writeNumberField(CartesianLayoutElement.VIEW, this.getView());
         }
-        w.writeNumberField(CartesianLayoutElement.X, Double.valueOf(this.getX()));
-        w.writeNumberField(CartesianLayoutElement.Y, Double.valueOf(this.getY()));
+        w.writeNumberField(CartesianLayoutElement.X, Double.parseDouble(this.getX()));
+        w.writeNumberField(CartesianLayoutElement.Y, Double.parseDouble(this.getY()));
         if (this.isZset()) {
-            w.writeNumberField(CartesianLayoutElement.Z, Double.valueOf(this.getZ()));
+            w.writeNumberField(CartesianLayoutElement.Z, Double.parseDouble(this.getZ()));
         }
         w.writeEndObject();		
         w.flush();

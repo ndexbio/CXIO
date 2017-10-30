@@ -1,15 +1,12 @@
 package org.cxio.aspects.datamodels;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.cxio.aspects.writers.WriterUtil;
-import org.cxio.util.CxConstants;
 import org.cxio.util.JsonWriter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonGenerator;
 
 /**
  *
@@ -24,7 +21,12 @@ import com.fasterxml.jackson.core.JsonGenerator;
 public abstract class AbstractElementAttributesAspectElement extends AbstractAttributesAspectElement {
 
 
-    /** The node or edge this attribute is a property of. */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/** The node or edge this attribute is a property of. */
     public final static String ATTR_PROPERTY_OF = "po";
 
  	@JsonProperty(ATTR_PROPERTY_OF)

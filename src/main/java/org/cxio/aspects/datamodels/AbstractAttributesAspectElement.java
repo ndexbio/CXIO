@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 import org.cxio.aspects.writers.WriterUtil;
-import org.cxio.util.CxConstants;
 import org.cxio.util.JsonWriter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,7 +23,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class AbstractAttributesAspectElement extends AbstractAspectElement {
 
-    /** The name of this attribute. */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/** The name of this attribute. */
     public final static String ATTR_NAME        = "n";
 
     /** The subnetwork this attribute belongs to. */
@@ -86,7 +89,8 @@ public abstract class AbstractAttributesAspectElement extends AbstractAspectElem
      *
      * @return the list values of the (list) attribute as list of Strings
      */
-    public final List<String> getValues() {
+    @SuppressWarnings("unchecked")
+	public final List<String> getValues() {
     	if ( _values == null) return null;
         if (_values instanceof String) {
             throw new IllegalStateException("attempt to return single value as list of values: \"" + 

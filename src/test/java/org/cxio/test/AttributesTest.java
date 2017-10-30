@@ -27,19 +27,19 @@ public class AttributesTest {
     @Test
     public void test() throws IOException {
 
-        final List<String> a0 = DatamodelsUtil.parseStringToStringList(null, ATTRIBUTE_DATA_TYPE.STRING);
+        final List<String> a0 = DatamodelsUtil.parseStringToStringList(null);
 
         assertTrue(a0 == null);
 
-        final List<String> a1 = DatamodelsUtil.parseStringToStringList("[]", ATTRIBUTE_DATA_TYPE.STRING);
+        final List<String> a1 = DatamodelsUtil.parseStringToStringList("[]");
 
         assertTrue(a1.size() == 0);
 
-        final List<String> a2 = DatamodelsUtil.parseStringToStringList("[\"a\"]", ATTRIBUTE_DATA_TYPE.STRING);
+        final List<String> a2 = DatamodelsUtil.parseStringToStringList("[\"a\"]");
 
         assertTrue(a2.get(0).equals("a"));
 
-        final List<String> a3 = DatamodelsUtil.parseStringToStringList("[\"a\", \"b,]\"]", ATTRIBUTE_DATA_TYPE.STRING);
+        final List<String> a3 = DatamodelsUtil.parseStringToStringList("[\"a\", \"b,]\"]");
 
         assertTrue(a3.get(0).equals("a"));
         assertTrue(a3.get(1).equals("b,]"));
@@ -57,9 +57,9 @@ public class AttributesTest {
         sb.append('b');
         sb.append('"');
         sb.append(']');
-        final List<String> a4 = DatamodelsUtil.parseStringToStringList(sb.toString(), ATTRIBUTE_DATA_TYPE.STRING);
+        final List<String> a4 = DatamodelsUtil.parseStringToStringList(sb.toString());
 
-        final List<String> a5 = DatamodelsUtil.parseStringToStringList(CxioUtil.stringListToJson(a4), ATTRIBUTE_DATA_TYPE.STRING);
+        final List<String> a5 = DatamodelsUtil.parseStringToStringList(CxioUtil.stringListToJson(a4));
 
         assertTrue(a5.get(0).equals("a"));
 
@@ -275,7 +275,7 @@ public class AttributesTest {
             }
             else {
                 final List<String> v = a.getValues();
-                final List<String> parsed = DatamodelsUtil.parseStringToStringList(v_str, a.getDataType());
+                final List<String> parsed = DatamodelsUtil.parseStringToStringList(v_str);
                 assertTrue(v.size() == parsed.size());
                 final HiddenAttributesElement aa = HiddenAttributesElement.createInstanceWithMultipleValues(0L, "name", v_str, a.getDataType());
                 assertTrue(v_str.equals(CxioUtil.getAttributeValuesAsString(aa)));
@@ -291,7 +291,7 @@ public class AttributesTest {
             }
             else {
                 final List<String> v = a.getValues();
-                final List<String> parsed = DatamodelsUtil.parseStringToStringList(v_str, a.getDataType());
+                final List<String> parsed = DatamodelsUtil.parseStringToStringList(v_str);
                 assertTrue(v.size() == parsed.size());
                 final HiddenAttributesElement aa = HiddenAttributesElement.createInstanceWithMultipleValues(0L, "name", v_str, a.getDataType());
                 assertTrue(v_str.equals(CxioUtil.getAttributeValuesAsString(aa)));
@@ -307,7 +307,7 @@ public class AttributesTest {
             }
             else {
                 final List<String> v = a.getValues();
-                final List<String> parsed = DatamodelsUtil.parseStringToStringList(v_str, a.getDataType());
+                final List<String> parsed = DatamodelsUtil.parseStringToStringList(v_str);
                 assertTrue(v.size() == parsed.size());
                 final HiddenAttributesElement aa = HiddenAttributesElement.createInstanceWithMultipleValues(0L, "name", v_str, a.getDataType());
                 assertTrue(v_str.equals(CxioUtil.getAttributeValuesAsString(aa)));

@@ -19,7 +19,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public final class EdgesElement extends AbstractAspectElement {
 
-    public final static String ID             = CxConstants.ID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2375466043279507205L;
+	public final static String ID             = CxConstants.ID;
     final public static String ASPECT_NAME    = "edges";
     public final static String SOURCE_NODE_ID = "s";
     public final static String TARGET_NODE_ID = "t";
@@ -54,15 +58,15 @@ public final class EdgesElement extends AbstractAspectElement {
 
     public EdgesElement(final long id, final String source, final String target) {
         _id = id;
-        _source = Long.valueOf(source);
-        _target = Long.valueOf(target);
+        _source = Long.parseLong(source);
+        _target = Long.parseLong(target);
         _interaction = null;
     }
 
     public EdgesElement(final String id, final String source, final String target) {
-        _id = Long.valueOf(id);
-        _source = Long.valueOf(source);
-        _target = Long.valueOf(target);
+        _id = Long.parseLong(id);
+        _source = Long.parseLong(source);
+        _target = Long.parseLong(target);
         _interaction = null;
     }
 
@@ -75,15 +79,15 @@ public final class EdgesElement extends AbstractAspectElement {
 
     public EdgesElement(final long id, final String source, final String target, final String interaction) {
         _id = id;
-        _source = Long.valueOf(source);
-        _target = Long.valueOf(target);
+        _source = Long.parseLong(source);
+        _target = Long.parseLong(target);
         _interaction = interaction;
     }
 
     public EdgesElement(final String id, final String source, final String target, final String interaction) {
-        _id = Long.valueOf(id);
-        _source = Long.valueOf(source);
-        _target = Long.valueOf(target);
+        _id = Long.parseLong(id);
+        _source = Long.parseLong(source);
+        _target = Long.parseLong(target);
         _interaction = interaction;
     }
 

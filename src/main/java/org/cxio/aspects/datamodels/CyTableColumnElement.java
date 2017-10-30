@@ -6,7 +6,11 @@ import org.cxio.util.JsonWriter;
 
 public class CyTableColumnElement extends AbstractAttributesAspectElement {
 
-    public final static String ASPECT_NAME = "cyTableColumn";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1766588560652332381L;
+	public final static String ASPECT_NAME = "cyTableColumn";
     public final static String APPLIES_TO  = "applies_to";
     private final String       _applies_to;
 

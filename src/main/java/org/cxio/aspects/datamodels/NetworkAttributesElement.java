@@ -1,11 +1,7 @@
 package org.cxio.aspects.datamodels;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.cxio.aspects.writers.WriterUtil;
-import org.cxio.util.JsonWriter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -21,7 +17,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class NetworkAttributesElement extends AbstractAttributesAspectElement {
 
-    public final static String ASPECT_NAME = "networkAttributes";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5012692251360591007L;
+	public final static String ASPECT_NAME = "networkAttributes";
     
     public NetworkAttributesElement() { super();}
 
@@ -117,7 +117,7 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
 
     public final static NetworkAttributesElement createInstanceWithMultipleValues(final Long subnetwork, final String name, final String values, final ATTRIBUTE_DATA_TYPE type) throws IOException {
 
-        return new NetworkAttributesElement(subnetwork, name, DatamodelsUtil.parseStringToStringList(values, type), type);
+        return new NetworkAttributesElement(subnetwork, name, DatamodelsUtil.parseStringToStringList(values), type);
     }
     
     /**
@@ -136,7 +136,8 @@ public final class NetworkAttributesElement extends AbstractAttributesAspectElem
     		return new NetworkAttributesElement(subnetwork, name, serializedValue, type);
     	} 
     	
-        final TypeReference<List<String>> typeRef = new TypeReference<List<String>>() {   };
+    	
+        final TypeReference<List<String>> typeRef = new TypeReference<List<String>>() { /* nothing need to be done. */  };
     	List<String> sl = mapper.readValue(serializedValue, typeRef);
         return new NetworkAttributesElement(subnetwork, name, sl, type);
     }

@@ -1,10 +1,7 @@
 package org.cxio.aspects.datamodels;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.cxio.util.JsonWriter;
 
 /**
  * This class is used to present one hidden attribute.
@@ -16,7 +13,11 @@ import org.cxio.util.JsonWriter;
  */
 public final class HiddenAttributesElement extends AbstractAttributesAspectElement {
 
-    public final static String ASPECT_NAME = "cyHiddenAttributes";  //"hiddenAttributes" is the old Aspect name before 1.1 fix.
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7191022345923031681L;
+	public final static String ASPECT_NAME = "cyHiddenAttributes";  //"hiddenAttributes" is the old Aspect name before 1.1 fix.
 
     public HiddenAttributesElement(final Long subnetwork, final String name, final List<String> values) {
         _data_type = ATTRIBUTE_DATA_TYPE.LIST_OF_STRING;
@@ -110,7 +111,7 @@ public final class HiddenAttributesElement extends AbstractAttributesAspectEleme
 
     public final static HiddenAttributesElement createInstanceWithMultipleValues(final Long subnetwork, final String name, final String values, final ATTRIBUTE_DATA_TYPE type) throws IOException {
 
-        return new HiddenAttributesElement(subnetwork, name, DatamodelsUtil.parseStringToStringList(values, type), type);
+        return new HiddenAttributesElement(subnetwork, name, DatamodelsUtil.parseStringToStringList(values), type);
     }
 
 

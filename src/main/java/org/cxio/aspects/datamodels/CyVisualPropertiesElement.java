@@ -19,7 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public final class CyVisualPropertiesElement extends AbstractAspectElement {
 
-    public final static String               APPLIES_TO    = "applies_to";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4510933825037421074L;
+	public final static String               APPLIES_TO    = "applies_to";
     public final static String               ASPECT_NAME   = "cyVisualProperties"; //"visualProperties" is the old aspectName before 1.1 fix.;
     public final static String               VIEW          = "view";
     public final static String               PROPERTIES    = "properties";
@@ -49,9 +53,9 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
     public CyVisualPropertiesElement(final String properties_of) {
         _properties_of = properties_of;
         _applies_to = null;
-        _properties = new TreeMap<String, String>();
-        _dependencies = new TreeMap<String, String>();
-        _mappings = new TreeMap<String, Mapping>();
+        _properties = new TreeMap<>();
+        _dependencies = new TreeMap<>();
+        _mappings = new TreeMap<>();
         _view = null;
     }
 
@@ -76,9 +80,9 @@ public final class CyVisualPropertiesElement extends AbstractAspectElement {
     public CyVisualPropertiesElement(final String properties_of, final Long applies_to, final Long view) {
         _properties_of = properties_of;
         _applies_to = applies_to;
-        _properties = new TreeMap<String, String>();
-        _dependencies = new TreeMap<String, String>();
-        _mappings = new TreeMap<String, Mapping>();
+        _properties = new TreeMap<>();
+        _dependencies = new TreeMap<>();
+        _mappings = new TreeMap<>();
         _view = view;
     }
 

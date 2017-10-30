@@ -32,29 +32,22 @@ public final class CartesianLayoutFragmentReader extends AbstractFragmentReader 
                                                   ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y),
                                                   ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Z));
             }
-            else {
-                return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
-                								  null,
-                                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
-                                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y),
-                                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Z));
-            }
+			return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
+											  null,
+			                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
+			                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y),
+			                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Z));
         }
-        else {
-            if (o.has(CartesianLayoutElement.VIEW)) {
-                return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
-                                                  ParserUtils.getTextValueAsLong(o, CartesianLayoutElement.VIEW),
-                                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
-                                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y));
+		if (o.has(CartesianLayoutElement.VIEW)) {
+		    return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
+		                                      ParserUtils.getTextValueAsLong(o, CartesianLayoutElement.VIEW),
+		                                      ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
+		                                      ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y));
 
-            }
-            else {
-                return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
-                                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
-                                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y));
-
-            }
-        }
+		}
+		return new CartesianLayoutElement(ParserUtils.getTextValueRequiredAsLong(o, CartesianLayoutElement.NODE),
+		                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.X),
+		                                  ParserUtils.getTextValueRequired(o, CartesianLayoutElement.Y));
     }
 
 }

@@ -6,7 +6,11 @@ import org.cxio.util.JsonWriter;
 
 public final class CyViewsElement extends AbstractAspectElement {
 
-    public final static String ASPECT_NAME   = "cyViews";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3142005132518527096L;
+	public final static String ASPECT_NAME   = "cyViews";
     public final static String SUBWORKNET_ID = "s";
     public final static String VIEW_ID       = "@id";
     private final Long         _subnetwork_id;

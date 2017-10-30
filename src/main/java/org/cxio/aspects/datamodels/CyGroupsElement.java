@@ -15,7 +15,11 @@ import org.cxio.util.JsonWriter;
  */
 public final class CyGroupsElement extends AbstractAspectElement {
 
-    public final static String EXTERNAL_EDGES = "external_edges";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public final static String EXTERNAL_EDGES = "external_edges";
     public final static String GROUP_ID       = "@id";
     public final static String GROUP_NAME     = "name";
     public final static String INTERNAL_EDGES = "internal_edges";
@@ -37,9 +41,9 @@ public final class CyGroupsElement extends AbstractAspectElement {
         _name = name;
         _view = view;
         _group_id = group_id;
-        _nodes = new ArrayList<Long>();
-        _internal_edges = new ArrayList<Long>();
-        _external_edges = new ArrayList<Long>();
+        _nodes = new ArrayList<>();
+        _internal_edges = new ArrayList<>();
+        _external_edges = new ArrayList<>();
     }
 
     public void setNodesAll(final boolean nodes_all) {

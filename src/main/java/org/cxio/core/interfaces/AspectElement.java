@@ -1,10 +1,9 @@
 package org.cxio.core.interfaces;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import org.cxio.util.JsonWriter;
-
-import com.fasterxml.jackson.core.JsonGenerator;
 
 /**
  * The interface for all (named) AspectElements.
@@ -12,7 +11,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
  * @author cmzmasek
  *
  */
-public interface AspectElement extends Comparable<AspectElement> {
+public interface AspectElement extends Comparable<AspectElement>,Serializable {
 
     /**
      * This returns the name of the aspect.

@@ -1,7 +1,6 @@
 package org.cxio.aspects.datamodels;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,7 +16,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public final class EdgeAttributesElement extends AbstractElementAttributesAspectElement {
 
-    public final static String ASPECT_NAME = "edgeAttributes";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3596769612196693210L;
+	public final static String ASPECT_NAME = "edgeAttributes";
 
     public EdgeAttributesElement() {}
     
@@ -163,7 +166,7 @@ public final class EdgeAttributesElement extends AbstractElementAttributesAspect
 
     public final static EdgeAttributesElement createInstanceWithMultipleValues(final Long subnetwork, final Long property_of, final String name, final String values, final ATTRIBUTE_DATA_TYPE type) throws IOException {
 
-        return new EdgeAttributesElement(subnetwork, property_of, name, DatamodelsUtil.parseStringToStringList(values, type), type);
+        return new EdgeAttributesElement(subnetwork, property_of, name, DatamodelsUtil.parseStringToStringList(values), type);
     }
 
 }

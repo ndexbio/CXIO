@@ -1,7 +1,6 @@
 package org.cxio.aspects.datamodels;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,7 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public final class NodeAttributesElement extends AbstractElementAttributesAspectElement {
 
-    public final static String ASPECT_NAME = "nodeAttributes";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5486834312638179999L;
+	public final static String ASPECT_NAME = "nodeAttributes";
 
     
     public NodeAttributesElement() {
@@ -167,7 +170,7 @@ public final class NodeAttributesElement extends AbstractElementAttributesAspect
 
     public final static NodeAttributesElement createInstanceWithMultipleValues(final Long subnetwork, final Long property_of, final String name, final String values, final ATTRIBUTE_DATA_TYPE type) throws IOException {
 
-        return new NodeAttributesElement(subnetwork, property_of, name, DatamodelsUtil.parseStringToStringList(values, type), type);
+        return new NodeAttributesElement(subnetwork, property_of, name, DatamodelsUtil.parseStringToStringList(values), type);
     }
 
 }

@@ -30,7 +30,7 @@ public final class DatamodelsUtil {
 
     private final static List<String> split(final String json_array) throws IOException {
 
-        final List<String> splitted_json_elements = new ArrayList<String>();
+        final List<String> splitted_json_elements = new ArrayList<>();
         final ObjectMapper m = new ObjectMapper();
         final JsonNode n = m.readTree(json_array);
 
@@ -44,8 +44,8 @@ public final class DatamodelsUtil {
         return splitted_json_elements;
     }
 
-    public final static List<String> parseStringToStringList(final String string, final ATTRIBUTE_DATA_TYPE type) throws IOException {
-        final List<String> l = new ArrayList<String>();
+    public final static List<String> parseStringToStringList(final String string) throws IOException {
+        final List<String> l = new ArrayList<>();
         if (string == null) {
             return null;
         }

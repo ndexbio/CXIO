@@ -14,7 +14,12 @@ import org.cxio.util.JsonWriter;
  */
 public final class NetworkRelationsElement extends AbstractAspectElement {
 
-    private enum RELATIONSHIP_TYPE {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3906606304503606487L;
+
+	private enum RELATIONSHIP_TYPE {
         SUBNETWORK, VIEW;
     }
 
@@ -45,7 +50,7 @@ public final class NetworkRelationsElement extends AbstractAspectElement {
         _child_name = child_name;
     }
 
-    public NetworkRelationsElement(final Long child, final String child_name) throws IOException {
+    public NetworkRelationsElement(final Long child, final String child_name) {
         _parent = null;
         _child = child;
         _relationship = RELATIONSHIP_TYPE.SUBNETWORK;
