@@ -96,7 +96,7 @@ class AbstractCxReader {
                 throw new IllegalArgumentException("aspect handlers are null or empty");
             }
         }
-        final HashMap<String, AspectFragmentReader> ahs = new HashMap<String, AspectFragmentReader>();
+        final HashMap<String, AspectFragmentReader> ahs = new HashMap<>();
         if (aspect_readers != null) {
             for (final AspectFragmentReader aspect_reader : aspect_readers) {
                 ahs.put(aspect_reader.getAspectName(), aspect_reader);
@@ -164,7 +164,7 @@ class AbstractCxReader {
         }
     }
 
-    void performNumberVerification(final JsonParser _jp) throws JsonParseException, JsonMappingException, IOException {
+    void performNumberVerification(final JsonParser _jp) {
         // final String msg =
         // "aborting due to apparent inability to correctly process long intergers";
         NumberVerification nv = null;

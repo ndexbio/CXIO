@@ -136,7 +136,7 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
      * @return one aspect element, null if end of stream has been reached
      * @throws IOException
      */
-    private final AspectElement getNext() throws JsonProcessingException, IOException {
+    private final AspectElement getNext() throws IOException {
     	if ( _current != null) {
     		AspectElement result = _current;
     		_current = null;

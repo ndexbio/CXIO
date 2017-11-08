@@ -37,12 +37,12 @@ import org.cxio.core.interfaces.AspectElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class GeneralAspectFragmentReader extends AbstractFragmentReader {
+public class GeneralAspectFragmentReader<T extends AspectElement> extends AbstractFragmentReader {
 
 	private String aspectName;
-	private Class cls;
+	private Class<T> cls;
 	
-	public GeneralAspectFragmentReader(String aspectName, Class cls) {
+	public GeneralAspectFragmentReader(String aspectName, Class<T> cls) {
 		this.aspectName = aspectName;
 		this.cls = cls;
 	}
@@ -53,9 +53,9 @@ public class GeneralAspectFragmentReader extends AbstractFragmentReader {
 	}
 
 	@Override
-	public AspectElement readElement(ObjectNode o) throws IOException {
+	public T readElement(ObjectNode o) throws IOException {
 		ObjectMapper jsonObjectMapper = new ObjectMapper();
-		return (AspectElement)jsonObjectMapper.treeToValue(o, cls);
+		return jsonObjectMapper.treeToValue(o, cls);
 	//	return o;
 	}
 
