@@ -9,6 +9,19 @@
 	<name>CX Serialization and De-serialization library</name>
 	<description>Java classes for CX serialization and de-serialization</description>
 
+	<distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Internal Releases</name>
+            <url>http://code.cytoscape.org/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Internal Snapshots</name>
+            <url>http://code.cytoscape.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 	<properties>
 		<bundle.symbolicName>org.ndexbio.cxio.cxio</bundle.symbolicName>
 		<bundle.namespace>org.ndexbio.cxio</bundle.namespace>
