@@ -150,7 +150,7 @@ public final class CxReader extends AbstractCxReader {
         if (cxr == null) {
             throw new IllegalArgumentException("reader is null");
         }
-        final SortedMap<String, List<AspectElement>> all_aspects = new TreeMap<String, List<AspectElement>>();
+        final SortedMap<String, List<AspectElement>> all_aspects = new TreeMap<>();
         while (cxr.hasNext()) {
             final List<AspectElement> aspects = cxr.getNext();
             if ((aspects != null) && !aspects.isEmpty()) {

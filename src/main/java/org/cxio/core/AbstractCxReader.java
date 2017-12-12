@@ -164,7 +164,7 @@ class AbstractCxReader {
         }
     }
 
-    void performNumberVerification(final JsonParser _jp) {
+    static void performNumberVerification(final JsonParser _jp) throws IOException {
         // final String msg =
         // "aborting due to apparent inability to correctly process long intergers";
         NumberVerification nv = null;
@@ -177,10 +177,8 @@ class AbstractCxReader {
             return;
         }
         if ((nv != null)) {
-            if ((nv.getLongNumber() != CxConstants.LONG_NUMBER_TEST) && (nv.getLongNumber() != Long.MAX_VALUE)) {
-                // throw new IOException(msg); //TODO //FIXME
-                System.out.println("WARNING: number check is :" + nv.getLongNumber() + " but is expected to be " + CxConstants.LONG_NUMBER_TEST);
-                System.err.println("WARNING: number check is :" + nv.getLongNumber() + " but is expected to be " + CxConstants.LONG_NUMBER_TEST);
+            if ((!nv.getLongNumber().equals(CxConstants.LONG_NUMBER_TEST)) && (nv.getLongNumber().longValue() != Long.MAX_VALUE)) {
+                throw new IOException ("CX parser number check is :" + nv.getLongNumber() + " but is expected to be " + CxConstants.LONG_NUMBER_TEST);
             }
         }
         // else {

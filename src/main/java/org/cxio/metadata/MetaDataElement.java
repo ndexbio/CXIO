@@ -35,7 +35,7 @@ public class MetaDataElement {
      *
      */
     public MetaDataElement() {
-        _data = new TreeMap<String, Object>();
+        _data = new TreeMap<>();
         _data.put(PROPERTIES, new ArrayList<TreeMap<String, String>>());
     }
 
