@@ -13,6 +13,6 @@ public final class CxConstants {
     
     public final static String ID               = "@id";
 
-    public final static long   LONG_NUMBER_TEST = 281474976710655L;
+    public final static Long   LONG_NUMBER_TEST = Long.valueOf(281474976710655L);
 
 }

@@ -274,9 +274,8 @@ public final class CxWriter {
         
         writeMetaData(_post_meta_data);
         final Status status = new Status(success, message);
-        if (status != null) {
-            status.toJson(_jw);
-        }
+        status.toJson(_jw);
+        
         _jw.end();
     }
 
@@ -303,9 +302,7 @@ public final class CxWriter {
         _jw.start();
 
         final NumberVerification nv = new NumberVerification(CxConstants.LONG_NUMBER_TEST);
-        if (nv != null) {
-            nv.toJson(_jw);
-        }
+        nv.toJson(_jw);
 
         writeMetaData(_pre_meta_data);
     }
@@ -570,7 +567,7 @@ public final class CxWriter {
         if (os == null) {
             throw new IllegalArgumentException("attempt to use null outputstream");
         }
-        _writers = new HashMap<String, AspectFragmentWriter>();
+        _writers = new HashMap<>();
 
         OutputStream my_os;
         if (calculate_md5_checksum) {
@@ -597,7 +594,7 @@ public final class CxWriter {
         if (os == null) {
             throw new IllegalArgumentException("attempt to use null outputstream");
         }
-        _writers = new HashMap<String, AspectFragmentWriter>();
+        _writers = new HashMap<>();
         _md = null;
         _jw = JsonWriter.createInstance(os, use_default_pretty_printer);
         _started = false;
