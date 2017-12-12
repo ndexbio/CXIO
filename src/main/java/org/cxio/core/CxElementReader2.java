@@ -72,7 +72,7 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
      */
     public CxElementReader2 (InputStream input, Set<AspectFragmentReader> aspect_readers, boolean compatibleToOldCytoscapeAspect) throws IOException {
           
-          _element_readers = new HashMap<String, AspectFragmentReader>();
+          _element_readers = new HashMap<>();
           if (aspect_readers != null) {
               for (final AspectFragmentReader aspect_reader : aspect_readers) {
             	  _element_readers.put(aspect_reader.getAspectName(), aspect_reader);
@@ -293,7 +293,7 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
         nv = NumberVerification.createInstanceFromJson(jp);
 
         if ((nv != null)) {
-            if ((nv.getLongNumber() != CxConstants.LONG_NUMBER_TEST) && (nv.getLongNumber() != Long.MAX_VALUE)) {
+            if ((!nv.getLongNumber().equals(CxConstants.LONG_NUMBER_TEST)) && (nv.getLongNumber().longValue() != Long.MAX_VALUE)) {
             	String errorMsg = "WARNING: number check is :" + nv.getLongNumber() + " but is expected to be " + CxConstants.LONG_NUMBER_TEST;
                 throw new IOException(errorMsg);
             }
