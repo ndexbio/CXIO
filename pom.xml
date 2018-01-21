@@ -5,7 +5,7 @@
 	<groupId>org.ndexbio.cxio</groupId>
 	<artifactId>ndex-cxio</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<name>CX Serialization and De-serialization library</name>
 	<description>Java classes for CX serialization and de-serialization</description>
 

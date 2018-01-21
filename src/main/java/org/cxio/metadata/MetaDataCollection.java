@@ -80,7 +80,7 @@ public final class MetaDataCollection implements Serializable, Iterable<MetaData
      *
      */
     public MetaDataCollection() {
-        _data = new ArrayList<SortedMap<String, Object>>();
+        _data = new ArrayList<>();
     }
 
     /**

@@ -15,6 +15,7 @@ import org.cxio.aspects.datamodels.SubNetworkElement;
 import org.cxio.core.interfaces.AspectElement;
 import org.cxio.core.interfaces.AspectFragmentReader;
 import org.cxio.metadata.MetaDataCollection;
+import org.cxio.metadata.MetaDataElement;
 import org.cxio.misc.NumberVerification;
 import org.cxio.misc.OpaqueFragmentReader;
 import org.cxio.misc.Status;
@@ -23,7 +24,6 @@ import org.cxio.util.CxConstants;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -61,6 +61,7 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
     Status              _status;
     MessageDigest       _md;
     boolean             _encountered_non_meta_content;
+    private boolean compatibleToOldCytoscapeAspect;
     
     /**
      * This creates a new CxElementReader with all AspectFragmentReaders implemented in this library already added.
@@ -73,6 +74,7 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
     public CxElementReader2 (InputStream input, Set<AspectFragmentReader> aspect_readers, boolean compatibleToOldCytoscapeAspect) throws IOException {
           
           _element_readers = new HashMap<>();
+          this.compatibleToOldCytoscapeAspect = compatibleToOldCytoscapeAspect;
           if (aspect_readers != null) {
               for (final AspectFragmentReader aspect_reader : aspect_readers) {
             	  _element_readers.put(aspect_reader.getAspectName(), aspect_reader);
@@ -178,28 +180,31 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
         			if ( md == null)
         				throw new IOException ( "Malformed medata at" + getPosition());
         	        
-        			if ( !md.getMetaData().isEmpty()) {
-        	            if (_encountered_non_meta_content) {
-        	                _post_meta_data = md;
-        	            }
-        	            else {
-        	            	if ( !preMetaDataReceived ) {
-        	            		_pre_meta_data = md;
-        	            		preMetaDataReceived = true;
-        	            	}	
-        	            }
-        	        } 
+					if (!md.getMetaData().isEmpty()) {
+						if ( this.compatibleToOldCytoscapeAspect)
+							migrateOldCyAspects(md);
+						if (_encountered_non_meta_content) {
+							_post_meta_data = md;
+						} else {
+							if (!preMetaDataReceived) {
+								_pre_meta_data = md;
+								preMetaDataReceived = true;
+							}
+						}
+					}
         	        state = START;
         		} else if (aspectName.equals(Status.NAME)) {
-        			if ( _pre_meta_data ==null && _post_meta_data == null) 
-        				throw new IOException("Status section appears before pre or post metadata found in the document.");
-        			
-        		    _status = Status.createInstanceFromJson(jp);
-           	        if ( _status == null)
-           	        	throw new IOException("Malformed Status object at " + getPosition());
-           	        if (_status.getError() !=null && _status.getError().length() > 0)
-           	        	throw new IOException("Error status received in CX document. Error message: " + _status.getError());
-           	        state = END;
+					if (_pre_meta_data == null && _post_meta_data == null)
+						throw new IOException(
+								"Status section appears before pre or post metadata found in the document.");
+
+					_status = Status.createInstanceFromJson(jp);
+					if (_status == null)
+						throw new IOException("Malformed Status object at " + getPosition());
+					if (_status.getError() != null && _status.getError().length() > 0)
+						throw new IOException(
+								"Error status received in CX document. Error message: " + _status.getError());
+					state = END;
         		} else if ( _post_meta_data != null){
         			throw new IOException("Only " + Status.NAME + " aspect is allowed after post metadata section. Error at " + getPosition());
         		} else {    // process a normal aspect fragment
@@ -300,6 +305,25 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
         }
     }
 
+    /* Migrate the old metadata to new metadata entry, because the readers are converting 
+     * them to new aspects.
+     */
+    
+    private static void migrateOldCyAspects(MetaDataCollection metadata) {
+      	migrateMetadata("visualProperties", "cyVisualProperties", metadata);
+      	migrateMetadata("subNetworks", "cySubNetworks", metadata);
+      	migrateMetadata("networkRelations", "cyNetworkRelations", metadata);
+      	migrateMetadata("hiddenAttributes", "cyHiddenAttributes", metadata);
+    	
+    }
+    
+    private  static void migrateMetadata(String oldName, String newName, MetaDataCollection metadata) {
+		MetaDataElement metaDataElmt = metadata.remove(oldName);
+		if ( metaDataElmt != null ) {
+			metaDataElmt.setName(newName);
+			metadata.add(metaDataElmt);	
+		}
+    }
     
     public MetaDataCollection getPreMetaData() throws IOException {
     	hasNext();
