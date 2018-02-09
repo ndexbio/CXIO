@@ -1,81 +1,94 @@
 package org.cxio.metadata;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
+
 
 import org.cxio.core.interfaces.AspectElement;
 import org.cxio.util.CxioUtil;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * This is to hold meta data.
  * It is intended to be used together with class MetaData.
  *
- * @author cmzmasek
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+
+@JsonInclude(Include.NON_NULL)
+
 public class MetaDataElement {
 
-    public final static String              CONSISTENCY_GROUP = "consistencyGroup";
+  /*  public final static String              CONSISTENCY_GROUP = "consistencyGroup";
     public final static String              ELEMENT_COUNT     = "elementCount";
     public final static String              ID_COUNTER        = "idCounter";
     public final static String              LAST_UPDATE       = "lastUpdate";
     public final static String              NAME              = "name";
     public final static String              PROPERTIES        = "properties";
-    public final static String              VERSION           = "version";
+    public final static String              VERSION           = "version"; */
 
-    final private SortedMap<String, Object> _data;
+    //final private SortedMap<String, Object> _data;
 
+	@JsonProperty("name")	
+	private String name;
+
+	@JsonProperty("elementCount")	
+	private Long elementCount;
+	
+	@JsonProperty("idCounter")	
+	private Long idCounter;
+	
+	@JsonProperty("checksum")	
+	private String checksum;
+	
+	@JsonProperty("version")	
+	private String version;
+	
+	@JsonProperty("consistencyGroup")	
+	private Long consistencyGroup;
+	
+	@JsonProperty("properties")	
+	private List<Map.Entry<String, String>> properties;
+   
+	private static final String errMsg = "Name attribute of MetaDataElement can't be null.";
+	
     /**
      * Constructor to create an empty MetaDataElement.
      *
      */
     public MetaDataElement() {
-        _data = new TreeMap<>();
-        _data.put(PROPERTIES, new ArrayList<TreeMap<String, String>>());
+    		properties = new ArrayList<>();
     }
 
-    /**
+    public MetaDataElement(String name, String version) {   	
+    		setName(name);
+    		this.version = version;
+    }
+    /*
      * Constructor to create a MetaDataElement containing the
      * data provided in a SortedMap (String to Object).
      *
      */
-    public MetaDataElement(final SortedMap<String, Object> data) {
+  /*  public MetaDataElement(final SortedMap<String, Object> data) {
         _data = data;
-    }
+    } */
 
     /**
      * Convenience method to add a "property".
      *
      * @param property a key value pair
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     public final void addProperty(final String key, final String value) {
-        if (key == null) {
-            throw new IllegalArgumentException("property key must not be null");
-        }
-        if (!_data.containsKey(PROPERTIES)) {
-            _data.put(PROPERTIES, new ArrayList<TreeMap<String, String>>());
-
-        }
-        if (((List) _data.get(PROPERTIES)).isEmpty()) {
-            ((ArrayList<TreeMap<String, String>>) _data.get(PROPERTIES)).add(new TreeMap<String, String>());
-        }
-        getProperties().put(key, value);
-    }
-
-    /**
-     * The get the Object value corresponding to a given key.
-     *
-     * @param key
-     * @return
-     */
-    public final Object get(final String key) {
-        return _data.get(key);
+    	
+    	 	properties.add(new SimpleEntry<>(key,value));
+ 
     }
 
     /**
@@ -84,31 +97,17 @@ public class MetaDataElement {
      * @return the consistency group
      */
     public final Long getConsistencyGroup() {
-        if (_data.get(CONSISTENCY_GROUP) != null) {
-            return Long.valueOf(String.valueOf(_data.get(CONSISTENCY_GROUP)));
-        }
-        return null;
+    		return this.consistencyGroup;
     }
 
-    /**
-     * This allows to get all he data in this object as a SortedMap (String to Object).
-     *
-     * @return a SortedMap (String to Object)
-     */
-    public final SortedMap<String, Object> getData() {
-        return _data;
-    }
-
+   
     /**
      * Convenience method to get the element count.
      *
      * @return the element count
      */
     public final Long getElementCount() {
-        if (_data.get(ELEMENT_COUNT) != null) {
-            return Long.valueOf(String.valueOf(_data.get(ELEMENT_COUNT)));
-        }
-        return null;
+       return this.elementCount;
     }
 
     /**
@@ -117,22 +116,7 @@ public class MetaDataElement {
      * @return the id counter
      */
     public final Long getIdCounter() {
-        if (_data.get(ID_COUNTER) != null) {
-            return Long.valueOf(String.valueOf(_data.get(ID_COUNTER)));
-        }
-        return null;
-    }
-
-    /**
-     * Convenience method to get the last update value.
-     *
-     * @return the last update value
-     */
-    public final Long getLastUpdate() {
-        if (_data.get(LAST_UPDATE) != null) {
-            return Long.valueOf(String.valueOf(_data.get(LAST_UPDATE)));
-        }
-        return null;
+       return this.idCounter;
     }
 
     /**
@@ -141,27 +125,16 @@ public class MetaDataElement {
      * @return the name (of the corresponding aspect)
      */
     public final String getName() {
-        if (_data.get(NAME) != null) {
-            return (String) _data.get(NAME);
-        }
-        return null;
+      return name;
     }
 
     /**
-     * Convenience method to get all "properties" (maps mapping String keys
-     * to String values).
+     * Convenience method to get all "properties" .
      *
      * @return  all "properties"
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public final Map<String, String> getProperties() {
-        if (!_data.containsKey(PROPERTIES)) {
-            _data.put(PROPERTIES, new ArrayList<TreeMap<String, String>>());
-        }
-        if (((List) _data.get(PROPERTIES)).isEmpty()) {
-            ((ArrayList<TreeMap<String, String>>) _data.get(PROPERTIES)).add(new TreeMap<String, String>());
-        }
-        return ((List<Map<String, String>>) _data.get(PROPERTIES)).get(0);
+    public final List<Map.Entry<String, String>> getProperties() {
+    		return properties;
     }
 
     /**
@@ -170,29 +143,7 @@ public class MetaDataElement {
      * @return the (corresponding aspect) version
      */
     public final String getVersion() {
-        if (_data.get(VERSION) != null) {
-            return (String) _data.get(VERSION);
-        }
-        return null;
-    }
-
-    /**
-     * This returns the keys for all the data fields.
-     *
-     * @return the keys for all the data fields
-     */
-    public final Set<String> keySet() {
-        return _data.keySet();
-    }
-
-    /**
-     * This is to put an arbitrary Object as value (data field), mapped to a key.
-     *
-     * @param key the key
-     * @param value an Object
-     */
-    public final void put(final String key, final Object value) {
-        _data.put(key, value);
+       return version;
     }
 
     /**
@@ -201,7 +152,7 @@ public class MetaDataElement {
      * @param c
      */
     public final void setConsistencyGroup(final Long c) {
-        _data.put(CONSISTENCY_GROUP, c);
+        this.consistencyGroup = c;
     }
 
     /**
@@ -210,7 +161,7 @@ public class MetaDataElement {
      * @param c
      */
     public final void setElementCount(final Long c) {
-        _data.put(ELEMENT_COUNT, c);
+        elementCount = c;
     }
 
     /**
@@ -219,25 +170,19 @@ public class MetaDataElement {
      * @param c
      */
     public final void setIdCounter(final Long c) {
-        _data.put(ID_COUNTER, c);
+        idCounter= c;
     }
 
-    /**
-     * Convenience method to set the last update value.
-     *
-     * @param last_update
-     */
-    public final void setLastUpdate(final Long last_update) {
-        _data.put(LAST_UPDATE, last_update);
-    }
 
     /**
      * Convenience method to set the name (of the corresponding aspect).
      *
      * @param name the name (of the corresponding aspect)
      */
-    public final void setName(final String name) {
-        _data.put(NAME, name);
+    public final void setName(final String elementName) {
+    		if ( elementName == null)
+    			throw new IllegalArgumentException(errMsg);
+        this.name = elementName;
     }
 
     /**
@@ -246,7 +191,7 @@ public class MetaDataElement {
      * @param e an AspectElement (to get the name from)
      */
     public final void setName(final AspectElement e) {
-        _data.put(NAME, e.getAspectName());
+        setName(e.getAspectName());
     }
 
     /**
@@ -255,19 +200,40 @@ public class MetaDataElement {
      * @param version the (corresponding aspect) version
      */
     public final void setVersion(final String version) {
-        _data.put(VERSION, version);
+        this.version = version;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        for (final Entry<String, Object> e : _data.entrySet()) {
-            sb.append(e.getKey());
-            sb.append(": ");
-            sb.append(e.getValue());
+            sb.append("name: " + name );
             sb.append(CxioUtil.LINE_SEPARATOR);
-        }
+            sb.append("version: " + version );
+            sb.append(CxioUtil.LINE_SEPARATOR);
+            sb.append("elementCount: " + this.elementCount);
+            sb.append(CxioUtil.LINE_SEPARATOR);
+            sb.append("idCounter: " + this.idCounter );
+            sb.append(CxioUtil.LINE_SEPARATOR);
         return sb.toString();
     }
+
+    /**
+     * The checksum attribute in metadata is optional. It might be removed in future versions of CX specification.
+     * @return
+     */
+    @Deprecated
+	public String getChecksum() {
+		return checksum;
+	}
+
+    /**
+     * checksum attribute in metadata is optional. It might be removed in future versions of CX specification.
+     * 
+     * @param checksum
+     */
+    @Deprecated
+	public void setChecksum(String checksum) {
+		this.checksum = checksum;
+	}
 
 }

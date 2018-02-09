@@ -155,33 +155,33 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
      * @return true if more aspect elements can be read in
      * @throws IOException
      */
-    private final boolean hasNext() throws IOException {
-        if ( _current !=null)
-    			return true;
-        while (jp.nextToken() != null) {
-        	JsonToken token = jp.getCurrentToken();
-        	if ( state == START) {
-        		if ( token == JsonToken.END_ARRAY) {  //End of Aspect fragment list.
-        			if ( _status == null)
-        				throw new IOException("CX document ends without a Status object defined at " + getPosition());
-        			break;
-        		}	
-        		if ( token != JsonToken.START_OBJECT) {
-        			throw new IOException("Expecting new aspect fragment at" + getPosition());
-        		}  
-        		state = ASPECT_FRAGMENT;
-        	} else if ( state == ASPECT_FRAGMENT) {
-        		if ( token != JsonToken.FIELD_NAME) 
-        			throw new IOException("Expecting aspect name as a field name at " + getPosition());
-        		
-        		String aspectName = jp.getCurrentName();
-        		if ( aspectName.equals(MetaDataCollection.NAME))	{   // MetaDataCollection
-        			final MetaDataCollection md = MetaDataCollection.createInstanceFromJson(jp);
-        			if ( md == null)
-        				throw new IOException ( "Malformed medata at" + getPosition());
-        	        
-					if (!md.getMetaData().isEmpty()) {
-						if ( this.compatibleToOldCytoscapeAspect)
+	private final boolean hasNext() throws IOException {
+		if (_current != null)
+			return true;
+		while (jp.nextToken() != null) {
+			JsonToken token = jp.getCurrentToken();
+			if (state == START) {
+				if (token == JsonToken.END_ARRAY) { // End of Aspect fragment list.
+					if (_status == null)
+						throw new IOException("CX document ends without a Status object defined at " + getPosition());
+					break;
+				}
+				if (token != JsonToken.START_OBJECT) {
+					throw new IOException("Expecting new aspect fragment at" + getPosition());
+				}
+				state = ASPECT_FRAGMENT;
+			} else if (state == ASPECT_FRAGMENT) {
+				if (token != JsonToken.FIELD_NAME)
+					throw new IOException("Expecting aspect name as a field name at " + getPosition());
+
+				String aspectName = jp.getCurrentName();
+				if (aspectName.equals(MetaDataCollection.NAME)) { // MetaDataCollection
+					final MetaDataCollection md = MetaDataCollection.createInstanceFromJson(jp);
+					if (md == null)
+						throw new IOException("Malformed medata at" + getPosition());
+
+					if (!md.isEmpty()) {
+						if (this.compatibleToOldCytoscapeAspect)
 							migrateOldCyAspects(md);
 						if (_encountered_non_meta_content) {
 							_post_meta_data = md;
@@ -192,8 +192,8 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
 							}
 						}
 					}
-        	        state = START;
-        		} else if (aspectName.equals(Status.NAME)) {
+					state = START;
+				} else if (aspectName.equals(Status.NAME)) {
 					if (_pre_meta_data == null && _post_meta_data == null)
 						throw new IOException(
 								"Status section appears before pre or post metadata found in the document.");
@@ -205,49 +205,51 @@ public final class CxElementReader2 implements Iterable<AspectElement> {
 						throw new IOException(
 								"Error status received in CX document. Error message: " + _status.getError());
 					state = END;
-        		} else if ( _post_meta_data != null){
-        			throw new IOException("Only " + Status.NAME + " aspect is allowed after post metadata section. Error at " + getPosition());
-        		} else {    // process a normal aspect fragment
-        			if ( _post_meta_data != null)
-        				throw new IOException("New aspect fragement found after post metadata at " + getPosition());
-                    _reader = _element_readers.get(aspectName);
-                    if (_reader == null) {
-                        _reader = OpaqueFragmentReader.createInstance(jp, aspectName);
-                    }
-                    _encountered_non_meta_content = true;  
-                    state = ELEMENT_LIST_START;
-        		}
-/*        	} else if ( state == ASPECT_FRAGMENT_END) {
-        		if ( token != JsonToken.END_ARRAY)
-        			throw new IOException ("End of array expected at: " + getPosition());
-        		state = START; */
-        	} else if ( state == END) {
-        		if ( token != JsonToken.END_ARRAY)
-        			throw new IOException("End of array expected at: " + getPosition());
-        		break;
-        	} else if ( state == ELEMENT_LIST_START) {
-        		if ( token != JsonToken.START_ARRAY)
-        			throw new IOException("Expect start of arry at: " + getPosition());
-        		state = IN_ELEMENT_LIST;
-        	} else if ( state == IN_ELEMENT_LIST) {
-                if (token == JsonToken.START_OBJECT) {
-                    final ObjectNode o = _m.readTree(jp);
-                    _current = _reader.readElement(o);
-                    if ( _current == null)
-                    	throw new IOException ("Malformed object ecountered before " + getPosition());
-                    return true;
-                } else if ( token == JsonToken.END_ARRAY) {
-                	state = ELEMENT_LIST_END;
-                }
+				} else if (_post_meta_data != null) {
+					throw new IOException("Only " + Status.NAME
+							+ " aspect is allowed after post metadata section. Error at " + getPosition());
+				} else { // process a normal aspect fragment
+					if (_post_meta_data != null)
+						throw new IOException("New aspect fragement found after post metadata at " + getPosition());
+					_reader = _element_readers.get(aspectName);
+					if (_reader == null) {
+						_reader = OpaqueFragmentReader.createInstance(jp, aspectName);
+					}
+					_encountered_non_meta_content = true;
+					state = ELEMENT_LIST_START;
+				}
+				/*
+				 * } else if ( state == ASPECT_FRAGMENT_END) { if ( token !=
+				 * JsonToken.END_ARRAY) throw new IOException ("End of array expected at: " +
+				 * getPosition()); state = START;
+				 */
+			} else if (state == END) {
+				if (token != JsonToken.END_ARRAY)
+					throw new IOException("End of array expected at: " + getPosition());
+				break;
+			} else if (state == ELEMENT_LIST_START) {
+				if (token != JsonToken.START_ARRAY)
+					throw new IOException("Expect start of arry at: " + getPosition());
+				state = IN_ELEMENT_LIST;
+			} else if (state == IN_ELEMENT_LIST) {
+				if (token == JsonToken.START_OBJECT) {
+					final ObjectNode o = _m.readTree(jp);
+					_current = _reader.readElement(o);
+					if (_current == null)
+						throw new IOException("Malformed object ecountered before " + getPosition());
+					return true;
+				} else if (token == JsonToken.END_ARRAY) {
+					state = ELEMENT_LIST_END;
+				}
 
-        	} else if ( state == ELEMENT_LIST_END) {
-        		if ( token != JsonToken.END_OBJECT) 
-        			throw new IOException("End of Object expected at " + getPosition());
-        		state = START;
-        	}
-        }
-        return false;
-    }
+			} else if (state == ELEMENT_LIST_END) {
+				if (token != JsonToken.END_OBJECT)
+					throw new IOException("End of Object expected at " + getPosition());
+				state = START;
+			}
+		}
+		return false;
+	}
 
     /**
      * This returns a Iterator for AspectElements

@@ -147,7 +147,7 @@ class AbstractCxReader {
 
     void addMetaData(final JsonParser _jp) throws JsonParseException, JsonMappingException, IOException {
         final MetaDataCollection md = MetaDataCollection.createInstanceFromJson(_jp);
-        if ((md != null) && !md.getMetaData().isEmpty()) {
+        if ((md != null) && !md.isEmpty()) {
             if (_encountered_non_meta_content) {
                 _post_meta_data = md;
             }

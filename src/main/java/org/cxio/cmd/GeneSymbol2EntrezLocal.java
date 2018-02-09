@@ -120,10 +120,10 @@ public final class GeneSymbol2EntrezLocal {
         }
 
         final MetaDataCollection pre_meta_data = new MetaDataCollection();
-        pre_meta_data.addMetaDataElement(cx_nodes, 1, "1.0", 1, id_counter);
-        pre_meta_data.addMetaDataElement(cx_node_attributes, 1, "1.0", 1, id_counter);
-        pre_meta_data.addMetaDataElement(cx_edges, 1, "1.0", 1, id_counter);
-        pre_meta_data.addMetaDataElement(cx_edge_attributes, 1, "1.0", 1, id_counter);
+        pre_meta_data.addMetaDataElement(cx_nodes, 1, "1.0", id_counter);
+        pre_meta_data.addMetaDataElement(cx_node_attributes, 1, "1.0", id_counter);
+        pre_meta_data.addMetaDataElement(cx_edges, 1, "1.0", id_counter);
+        pre_meta_data.addMetaDataElement(cx_edge_attributes, 1, "1.0", id_counter);
 
         final OutputStream out = new FileOutputStream(outfile);
         final CxWriter w = CxWriter.createInstanceWithAllAvailableWriters(out, true, true);

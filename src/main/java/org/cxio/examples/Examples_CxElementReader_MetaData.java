@@ -126,7 +126,6 @@ public class Examples_CxElementReader_MetaData {
         node_meta.setName(NodesElement.ASPECT_NAME);
         node_meta.setVersion("1.0");
         node_meta.setIdCounter(200L);
-        node_meta.setLastUpdate(1034334343L);
         node_meta.setElementCount(32L);
         node_meta.setConsistencyGroup(1L);
 
@@ -136,7 +135,6 @@ public class Examples_CxElementReader_MetaData {
 
         citation_meta.setName("Citation");
         citation_meta.setVersion("1.0");
-        citation_meta.setLastUpdate(1034334343L);
         citation_meta.setConsistencyGroup(1L);
 
         citation_meta.addProperty("name", "curator");
@@ -148,8 +146,8 @@ public class Examples_CxElementReader_MetaData {
 
         final MetaDataElement meta_post = new MetaDataElement();
         meta_post.setName("post meta data");
-        meta_post.put("write time", 0.34);
-        meta_post.put("success", true);
+    //    meta_post.put("write time", 0.34);
+    //    meta_post.put("success", true);
 
         md_post.add(meta_post);
 
