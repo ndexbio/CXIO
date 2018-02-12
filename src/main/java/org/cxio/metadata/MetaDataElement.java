@@ -8,10 +8,12 @@ import java.util.Map;
 
 import org.cxio.core.interfaces.AspectElement;
 import org.cxio.util.CxioUtil;
+import org.cxio.util.ForceLongDeserializer;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
@@ -39,10 +41,12 @@ public class MetaDataElement {
 	@JsonProperty("name")	
 	private String name;
 
-	@JsonProperty("elementCount")	
+	@JsonProperty("elementCount")
+	@JsonDeserialize(using=ForceLongDeserializer.class)	
 	private Long elementCount;
 	
 	@JsonProperty("idCounter")	
+	@JsonDeserialize(using=ForceLongDeserializer.class)
 	private Long idCounter;
 	
 	@JsonProperty("checksum")	
@@ -51,7 +55,8 @@ public class MetaDataElement {
 	@JsonProperty("version")	
 	private String version;
 	
-	@JsonProperty("consistencyGroup")	
+	@JsonProperty("consistencyGroup")
+	@JsonDeserialize(using=ForceLongDeserializer.class)
 	private Long consistencyGroup;
 	
 	@JsonProperty("properties")	

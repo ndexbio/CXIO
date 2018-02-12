@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -72,6 +73,7 @@ public final class MetaDataCollection implements Serializable, Iterable<MetaData
      */
     public static MetaDataCollection createInstanceFromJson(final JsonParser jp) throws JsonParseException, JsonMappingException, IOException {
         final ObjectMapper m = new ObjectMapper();
+        m.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
         return m.readValue(jp, MetaDataCollection.class);
     }
 
@@ -84,6 +86,8 @@ public final class MetaDataCollection implements Serializable, Iterable<MetaData
      */
     public final static MetaDataCollection createInstanceFromJson(final String str) throws IOException {
         final ObjectMapper m = new ObjectMapper();
+        m.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+
         return m.readValue(str, MetaDataCollection.class);
     } 
 
