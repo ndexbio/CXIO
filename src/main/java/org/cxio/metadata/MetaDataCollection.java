@@ -67,25 +67,25 @@ public final class MetaDataCollection implements Serializable, Iterable<MetaData
      * This is to create a MetaData object from a JsonParser.
      *
      * @param jp a JsonParser
-     * @return a MetaData object
-     * @throws IOException
+     * @return a MetaDataCollection object
+     * 
      */
     public static MetaDataCollection createInstanceFromJson(final JsonParser jp) throws JsonParseException, JsonMappingException, IOException {
         final ObjectMapper m = new ObjectMapper();
         return m.readValue(jp, MetaDataCollection.class);
     }
 
-    /*
+    /**
      * This is to create a MetaData object from a json formatted String.
      *
      * @param str a json formatted String
-     * @return a MetaData object
+     * @return a MetaDataCollection object
      * @throws IOException
      */
- /*   public final static MetaDataCollection createInstanceFromJson(final String str) throws IOException {
+    public final static MetaDataCollection createInstanceFromJson(final String str) throws IOException {
         final ObjectMapper m = new ObjectMapper();
         return m.readValue(str, MetaDataCollection.class);
-    } */
+    } 
 
     /**
      * Constructor, to create an empty MetaData object.
@@ -104,7 +104,10 @@ public final class MetaDataCollection implements Serializable, Iterable<MetaData
         _data.add(e);
     }
     
-
+    public final void addAt(int position, final MetaDataElement e) {
+        _data.add(position, e);
+    }
+    
     /**
      * * Convenience method to create and add one meta data element.
      *
